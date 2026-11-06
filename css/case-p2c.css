@@ -1,0 +1,465 @@
+/* Project → Case — blocks this case adds on top of case.css (draft, 2026-10-27). They follow the Art Glück case
+   system: a section is its head (label + heading + text) and media blocks of one height (1560 × 878, or halves
+   775 × 878, 10 apart); extra text goes into a subheader in the same text column. Units: design px × --u. */
+
+/* ── a media block of the standard size that holds a composition instead of one picture ── */
+.p2c-block { position: relative; aspect-ratio: 1560 / 878; border-radius: calc(10 * var(--u)); overflow: hidden; background: var(--bg-page);
+  display: flex; align-items: center; justify-content: center; }
+.p2c-block--dashed { background: none; border: 1px dashed #C9C6C0; color: var(--text-secondary); text-align: center; }
+.p2c-block--dashed p { margin: 0; max-width: calc(760 * var(--u)); }
+
+/* product screens on a blurred interior; the screen sits in a light window */
+.p2c-stage { position: relative; aspect-ratio: 1560 / 878; border-radius: calc(10 * var(--u)); overflow: hidden; background: var(--bg-page); }
+/* the blurred interior behind the screens is switched off (her «дурацкий фон», 2026-10-27): a calm flat sheet instead,
+   like the plain blocks of the Art Glück case */
+.p2c-stage { background: #F4F3F0; }
+.p2c-stage > .p2c-stage__bg { display: none; }
+.p2c-window { position: absolute; border-radius: calc(10 * var(--u)); overflow: hidden; background: #fff;
+  box-shadow: 0 calc(16 * var(--u)) calc(48 * var(--u)) rgb(0 0 0 / 0.08), 0 0 0 1px rgb(0 0 0 / 0.04); }
+/* window bar with three dots */
+.p2c-window::before { content: ""; display: block; height: calc(30 * var(--u)); --d: calc(4 * var(--u));
+  background: radial-gradient(circle at calc(18 * var(--u)) 50%, #D6D3CD var(--d), transparent calc(var(--d) + 0.5px)),
+              radial-gradient(circle at calc(34 * var(--u)) 50%, #D6D3CD var(--d), transparent calc(var(--d) + 0.5px)),
+              radial-gradient(circle at calc(50 * var(--u)) 50%, #D6D3CD var(--d), transparent calc(var(--d) + 0.5px)), #F4F3F0; }
+.p2c-window img { display: block; width: 100%; }
+.p2c-window--main { left: 50%; top: 50%; width: 68%; transform: translate(-50%, -50%); }
+.p2c-window--top { left: 50%; top: 9%; width: 68%; transform: translateX(-50%); }   /* a long page: shows its top */
+.p2c-phone { position: absolute; right: 9%; bottom: -18%; width: 17%; border-radius: calc(26 * var(--u)); overflow: hidden; background: #fff;
+  border: calc(6 * var(--u)) solid #161616; box-shadow: 0 calc(24 * var(--u)) calc(60 * var(--u)) rgb(0 0 0 / 0.22); }
+.p2c-phone img { display: block; width: 100%; }
+.p2c-pair .p2c-window { width: 40%; top: 50%; transform: translateY(-50%); }
+.p2c-pair .p2c-window:nth-of-type(1) { left: 7%; }
+.p2c-pair .p2c-window:nth-of-type(2) { right: 7%; }
+
+/* halves 775 × 878 that hold a composition */
+.p2c-stage--half { flex: 1 1 0; min-width: 0; aspect-ratio: 775 / 878; }
+.p2c-stage--half .p2c-window { left: 50%; top: 50%; width: 82%; transform: translate(-50%, -50%); }
+/* a small label in the corner of a block («Обычно» / «В Project → Case») */
+.p2c-note { position: absolute; z-index: 1; left: calc(30 * var(--u)); top: calc(30 * var(--u)); padding: calc(6 * var(--u)) calc(12 * var(--u));
+  border-radius: calc(6 * var(--u)); background: rgb(255 255 255 / 0.9); }
+
+/* Overview: three screens of the product in a cascade */
+.p2c-cascade .p2c-window { width: 50%; }
+.p2c-cascade .p2c-window:nth-of-type(1) { left: 5%; top: 8%; }
+.p2c-cascade .p2c-window:nth-of-type(2) { left: 25%; top: 22%; }
+.p2c-cascade .p2c-window:nth-of-type(3) { left: 45%; top: 36%; }
+
+/* a phone (390 × 844 screen) standing in the middle of a block */
+.p2c-device { position: absolute; left: 50%; top: 50%; height: 80%; aspect-ratio: 390 / 844; transform: translate(-50%, -50%);
+  border: calc(8 * var(--u)) solid #161616; border-radius: calc(40 * var(--u)); overflow: hidden; background: #fff;
+  box-shadow: 0 calc(24 * var(--u)) calc(60 * var(--u)) rgb(0 0 0 / 0.22); }
+.p2c-device > img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+/* «the usual way»: an empty case template, drawn in code */
+.p2c-blank { height: 100%; padding: calc(56 * var(--u)) calc(22 * var(--u)) calc(22 * var(--u)); box-sizing: border-box;
+  display: flex; flex-direction: column; gap: calc(14 * var(--u)); font-size: calc(13 * var(--u)); line-height: 1.3; color: var(--text-secondary); }
+.p2c-blank b { font-weight: 500; font-size: calc(20 * var(--u)); color: var(--text-primary); margin-bottom: calc(6 * var(--u)); }
+.p2c-blank span { display: block; height: calc(52 * var(--u)); margin-top: calc(6 * var(--u)); border: 1px solid #E2E0DC; border-radius: calc(6 * var(--u)); }
+.p2c-blank span.tall { height: calc(90 * var(--u)); }
+
+/* ── Problem: project → empty page → case ── */
+.p2c-path { display: flex; align-items: center; gap: calc(40 * var(--u)); }
+.p2c-path__node { display: flex; flex-direction: column; align-items: center; gap: calc(24 * var(--u)); text-align: center; }
+.p2c-path__node p { margin: 0; }
+.p2c-path__node p + p { color: var(--text-secondary); margin-top: calc(-18 * var(--u)); }
+.p2c-path__art, .p2c-path__blank, .p2c-path__case { width: calc(340 * var(--u)); aspect-ratio: 4 / 3; }
+.p2c-path__art { position: relative; }
+/* three loose sheets (4:5) that stay inside the 4:3 box */
+.p2c-path__art img { position: absolute; width: 46%; border-radius: calc(6 * var(--u)); box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgb(0 0 0 / 0.12); }
+.p2c-path__art img:nth-child(1) { left: 4%; top: 12%; transform: rotate(-6deg); }
+.p2c-path__art img:nth-child(2) { left: 27%; top: 4%; transform: rotate(2deg); }
+.p2c-path__art img:nth-child(3) { left: 50%; top: 12%; transform: rotate(7deg); }
+.p2c-path__blank { border-radius: calc(6 * var(--u)); background: #fff; border: 1px dashed #C9C6C0;
+  display: grid; place-items: center; font-size: calc(64 * var(--u)); font-weight: 500; color: var(--text-secondary); }
+.p2c-path__case { border-radius: calc(6 * var(--u)); overflow: hidden; background: #fff; box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgb(0 0 0 / 0.12); }
+.p2c-path__case img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.p2c-path__arrow { width: calc(56 * var(--u)); height: 1px; background: #B8B4AD; position: relative; margin-bottom: calc(60 * var(--u)); }
+.p2c-path__arrow::after { content: ""; position: absolute; right: 0; top: 50%; width: calc(9 * var(--u)); height: calc(9 * var(--u));
+  border-top: 1px solid #B8B4AD; border-right: 1px solid #B8B4AD; transform: translate(0, -50%) rotate(45deg); }
+
+/* ── Research: what the three students said ── */
+.p2c-quotes { display: grid; grid-template-columns: repeat(3, calc(450 * var(--u))); gap: calc(20 * var(--u)); }
+.p2c-quote { margin: 0; height: calc(480 * var(--u)); padding: calc(40 * var(--u)) calc(36 * var(--u)); box-sizing: border-box;
+  border-radius: calc(8 * var(--u)); background: #fff; display: flex; flex-direction: column; justify-content: space-between; }
+.p2c-quote blockquote { margin: 0; font-weight: 500; font-size: calc(32 * var(--u)); line-height: calc(36 * var(--u)); letter-spacing: calc(-1.2 * var(--u)); }
+.p2c-quote blockquote::before { content: "«"; } .p2c-quote blockquote::after { content: "»"; }
+.p2c-quote figcaption { color: var(--text-secondary); }
+
+/* ── How it works: screens (blocks of the standard height) scroll on the right, from the text column on;
+      the caption stays in the label column and switches with them (case-p2c.js) ── */
+.p2c-flow { display: grid; grid-template-columns: calc(440 * var(--u)) 1fr; }
+.p2c-flow__aside { position: relative; padding: 0 calc(20 * var(--u)); }
+.p2c-flow__sticky { position: sticky; top: calc(300 * var(--u)); }
+.p2c-flow__dots { display: flex; gap: calc(6 * var(--u)); margin-bottom: calc(30 * var(--u)); }
+.p2c-flow__dots i { width: calc(8 * var(--u)); height: calc(8 * var(--u)); background: #D9D8D4; transition: background-color 300ms ease; }
+.p2c-flow__dots i.is-on { background: var(--text-primary); }
+.p2c-flow__caps { position: relative; min-height: calc(260 * var(--u)); }
+.p2c-flow__cap { position: absolute; inset: 0 0 auto; display: flex; flex-direction: column; gap: calc(12 * var(--u));
+  opacity: 0; transform: translateY(calc(10 * var(--u))); transition: opacity 350ms ease, transform 450ms var(--ease-out, ease); pointer-events: none; }
+.p2c-flow__cap.is-on { opacity: 1; transform: none; }
+.p2c-flow__cap p, .p2c-flow__cap h4 { margin: 0; }
+.p2c-flow__cap .muted { color: var(--text-secondary); }
+.p2c-flow__frames { display: flex; flex-direction: column; gap: calc(10 * var(--u)); }
+.p2c-flow__frame { aspect-ratio: 1120 / 878; }
+.p2c-flow__frame .p2c-window--main { width: 84%; }
+.p2c-flow__inline { display: none; }
+@media (prefers-reduced-motion: reduce) { .p2c-flow__cap { transition: none; } }
+
+/* ── Exploration: the presentation variants, the chosen one marked ── */
+.p2c-variants { display: grid; grid-template-columns: repeat(5, calc(272 * var(--u))); gap: calc(14 * var(--u)); }
+.p2c-variant { margin: 0; display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+.p2c-variant__pic { position: relative; aspect-ratio: 4 / 5; border-radius: calc(6 * var(--u)); overflow: hidden; background: #fff; }
+.p2c-variant__pic img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.p2c-variant figcaption { color: var(--text-secondary); }
+.p2c-variant.is-chosen .p2c-variant__pic { outline: calc(2 * var(--u)) solid var(--text-primary); outline-offset: calc(-2 * var(--u)); }
+.p2c-variant.is-chosen figcaption { color: var(--text-primary); }
+.p2c-tag { position: absolute; left: calc(12 * var(--u)); top: calc(12 * var(--u)); padding: calc(4 * var(--u)) calc(10 * var(--u)); border-radius: calc(4 * var(--u));
+  background: var(--text-primary); color: #fff; }
+
+/* ── phone: blocks with several things inside grow to their content (a 211 px high block can't hold them) ── */
+@media (max-width: 899px) {
+  .p2c-block, .p2c-stage { border-radius: calc(4 * var(--u)); }
+  .p2c-block:not(.p2c-block--dashed) { aspect-ratio: auto; padding: calc(24 * var(--u)) calc(14 * var(--u)); }
+  .p2c-block--dashed { padding: calc(14 * var(--u)); }
+  .p2c-window { border-radius: calc(4 * var(--u)); }
+  .p2c-window::before { height: calc(12 * var(--u)); --d: calc(2 * var(--u)); }
+  .p2c-window--main, .p2c-window--top { width: 84%; }
+  .p2c-phone { width: 24%; right: 5%; border-width: calc(3 * var(--u)); border-radius: calc(10 * var(--u)); }
+  .p2c-device { border-width: calc(3 * var(--u)); border-radius: calc(14 * var(--u)); }
+  .p2c-note { left: calc(6 * var(--u)); top: calc(6 * var(--u)); padding: calc(2 * var(--u)) calc(5 * var(--u)); border-radius: calc(3 * var(--u));
+    font-size: calc(9 * var(--u)); line-height: calc(12 * var(--u)); white-space: nowrap; }
+  .p2c-device { height: 76%; top: 56%; }
+  .p2c-blank { padding: calc(20 * var(--u)) calc(8 * var(--u)) calc(8 * var(--u)); gap: calc(5 * var(--u)); font-size: calc(5 * var(--u)); }
+  .p2c-blank b { font-size: calc(8 * var(--u)); margin-bottom: 0; }
+  .p2c-blank span { height: calc(22 * var(--u)); margin-top: calc(2 * var(--u)); border-radius: calc(2 * var(--u)); }
+  .p2c-blank span.tall { height: calc(38 * var(--u)); }
+  /* the path stays one row, like a small picture: three nodes, labels only */
+  .p2c-path { gap: calc(8 * var(--u)); }
+  .p2c-path__node { gap: calc(8 * var(--u)); }
+  .p2c-path__node p + p { display: none; }
+  .p2c-path__node .t-label-l { font-size: calc(11 * var(--u)); line-height: calc(14 * var(--u)); }
+  .p2c-path__art, .p2c-path__blank, .p2c-path__case { width: calc(92 * var(--u)); }
+  .p2c-path__blank { font-size: calc(22 * var(--u)); }
+  .p2c-path__arrow { width: calc(12 * var(--u)); margin-bottom: calc(22 * var(--u)); }
+  .p2c-path__arrow::after { width: calc(5 * var(--u)); height: calc(5 * var(--u)); }
+  .p2c-quotes { grid-template-columns: 1fr; gap: calc(4 * var(--u)); width: 100%; }
+  .p2c-quote { height: auto; padding: calc(20 * var(--u)) calc(16 * var(--u)); gap: calc(20 * var(--u)); border-radius: calc(4 * var(--u)); }
+  .p2c-quote blockquote { font-size: calc(18 * var(--u)); line-height: calc(21 * var(--u)); letter-spacing: calc(-0.4 * var(--u)); }
+  .p2c-flow { display: block; }
+  .p2c-flow__aside { display: none; }
+  /* the six steps: a row swiped sideways, each screen with its caption under it (frame, caption, frame… fill
+     the two grid rows column by column) */
+  .p2c-flow__frames { display: grid; grid-template-rows: auto auto; grid-auto-flow: column; grid-auto-columns: 86%;
+    column-gap: calc(6 * var(--u)); row-gap: 0; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    margin: 0 calc(-7 * var(--u)); padding: 0 calc(7 * var(--u)); scroll-padding: 0 calc(7 * var(--u)); }
+  .p2c-flow__frames::-webkit-scrollbar { display: none; }
+  .p2c-flow__frame { aspect-ratio: 1560 / 878; scroll-snap-align: start; }
+  .p2c-flow__inline { display: flex; flex-direction: column; gap: calc(4 * var(--u)); padding-top: calc(10 * var(--u)); }
+  .p2c-flow__inline p, .p2c-flow__inline h4 { margin: 0; }
+  /* the five variants: one row, like a strip of thumbnails; only the chosen one keeps its caption */
+  .p2c-variants { grid-template-columns: repeat(5, 1fr); gap: calc(4 * var(--u)); width: 100%; }
+  .p2c-variant { gap: calc(4 * var(--u)); }
+  .p2c-variant figcaption { font-size: calc(8 * var(--u)); line-height: calc(10 * var(--u)); visibility: hidden; }
+  .p2c-variant.is-chosen figcaption { visibility: visible; white-space: nowrap; }
+  .p2c-variant__pic { border-radius: calc(3 * var(--u)); }
+  .p2c-tag { left: calc(3 * var(--u)); top: calc(3 * var(--u)); padding: calc(1 * var(--u)) calc(3 * var(--u)); font-size: calc(7 * var(--u)); line-height: calc(9 * var(--u)); }
+}
+
+/* the constructor's mobile question screen, drawn in code on her project (a 390 × 844 screen in .p2c-device) */
+.p2c-mq { height: 100%; box-sizing: border-box; padding: calc(22 * var(--u)) calc(18 * var(--u)); display: flex; flex-direction: column;
+  gap: calc(8 * var(--u)); font-size: calc(12 * var(--u)); line-height: 1.35; color: var(--text-secondary); }
+.p2c-mq p, .p2c-mq b { margin: 0; }
+.p2c-mq__logo { font-weight: 500; font-size: calc(15 * var(--u)); color: var(--text-primary); }
+.p2c-mq__proj { color: var(--text-primary); }
+.p2c-mq__bar { height: 2px; background: #E2E0DC; margin-top: calc(10 * var(--u)); }
+.p2c-mq__bar i { display: block; width: 72%; height: 100%; background: var(--text-primary); }
+.p2c-mq__step { font-size: calc(10 * var(--u)); }
+.p2c-mq b { margin-top: calc(26 * var(--u)); font-weight: 500; font-size: calc(22 * var(--u)); line-height: 1.15; color: var(--text-primary); }
+.p2c-mq__answer { flex: 1; max-height: calc(190 * var(--u)); padding: calc(12 * var(--u)); border: 1px solid #E2E0DC; border-radius: calc(8 * var(--u)); color: var(--text-primary); }
+.p2c-mq__next { align-self: flex-end; margin-top: auto; padding: calc(8 * var(--u)) calc(14 * var(--u)); border-radius: calc(6 * var(--u)); background: var(--text-primary); color: #fff; }
+@media (max-width: 899px) {
+  .p2c-mq { padding: calc(8 * var(--u)) calc(7 * var(--u)); gap: calc(3 * var(--u)); font-size: calc(5 * var(--u)); }
+  .p2c-mq__logo { font-size: calc(6 * var(--u)); }
+  .p2c-mq b { margin-top: calc(8 * var(--u)); font-size: calc(9 * var(--u)); }
+  .p2c-mq__step { font-size: calc(4 * var(--u)); }
+  .p2c-mq__answer { max-height: calc(70 * var(--u)); padding: calc(4 * var(--u)); border-radius: calc(3 * var(--u)); }
+  .p2c-mq__next { padding: calc(3 * var(--u)) calc(6 * var(--u)); border-radius: calc(2 * var(--u)); }
+}
+
+/* ── look of the pictures after her references (vldklsnkv.me/projects/mts, astapable.com/discord,
+      alexeibalakin.com/cases/steplease — 2026-10-27): the product screen large and clean on them,
+      no fake browser bar, just a rounded screen with a hairline edge. Structure of the case is unchanged. ── */
+/* her call (2026-10-27): the dark cards went back to the light sheet; the clean screens stay. No shadows anywhere,
+   only a hairline edge on the screens */
+.p2c-phone, .p2c-device, .p2c-path__art img, .p2c-path__case { box-shadow: none; }
+.p2c-window { border-radius: calc(12 * var(--u)); box-shadow: 0 0 0 1px rgb(0 0 0 / 0.06); }
+.p2c-window::before { display: none; }
+.p2c-window--main { width: 74%; }
+.p2c-flow__frame .p2c-window--main { width: 84%; }
+.p2c-window--top { top: 50%; transform: translate(-50%, -50%); width: 74%; }
+@media (max-width: 899px) {
+  .p2c-window { border-radius: calc(5 * var(--u)); }
+  .p2c-window--main, .p2c-window--top { width: 86%; }
+}
+
+/* a device mockup exported from her Figma (Portfolio-2, page «project»; phone 629:3681): the picture fills the half
+   card (same 775:878 frame), the answer is live text laid over the empty field so it can type itself. Box and type are
+   measured in the 775-wide mockup: field text at 247.1 / 325.6, 282.8 wide, Manrope 14.3 / 21.5 */
+.p2c-stage:has(.p2c-shot) { background: #F2F1EE; }
+/* her call: the device a bit smaller, the caption smaller and tucked into the top-left corner so they don't touch */
+.p2c-shot { position: absolute; left: 50%; top: 50%; width: 86%; aspect-ratio: 775 / 878; transform: translate(-50%, -50%); container-type: inline-size; }
+.p2c-note.t-label { left: calc(16 * var(--u)); top: calc(16 * var(--u)); padding: calc(4 * var(--u)) calc(9 * var(--u)); border-radius: calc(5 * var(--u));
+  font-size: calc(13 * var(--u)); line-height: calc(18 * var(--u)); }
+@media (max-width: 899px) {
+  .p2c-note.t-label { left: calc(5 * var(--u)); top: calc(5 * var(--u)); padding: calc(1 * var(--u)) calc(4 * var(--u)); border-radius: calc(3 * var(--u));
+    font-size: calc(7 * var(--u)); line-height: calc(10 * var(--u)); }
+}
+.p2c-shot img { display: block; width: 100%; height: 100%; }
+.p2c-shot__answer { position: absolute; left: calc(247.1 / 775 * 100%); top: calc(325.6 / 878 * 100%); width: calc(283.5 / 775 * 100%);
+  margin: 0; font-family: 'Manrope', system-ui, sans-serif; font-weight: 400; font-size: calc(14.32 / 775 * 100cqw);
+  line-height: 1.5; color: #161616; }
+
+/* the tablet mockups (Portfolio-2, page «project»: 624:6021 and 632:4301…632:4749) are exported with their 1560:878
+   light sheet, the same colour as the card; scaled so the tablet takes about 84% of the card width */
+.p2c-tab { position: absolute; left: 50%; top: 50%; width: 119%; transform: translate(-50%, -50%); }
+.p2c-tab img { display: block; width: 100%; height: auto; }
+@media (max-width: 899px) { .p2c-tab { width: 112%; } }
+.p2c-tab--half, .p2c-stage--half .p2c-tab { width: 128%; }
+
+/* «Проект → пустая страница → кейс» (her brief): the renders come first, fanned out (the middle one is a portrait
+   render), then the blank page, the case comes last, whole — its cover on top and text lines under it, nothing cut */
+.p2c-path__art img { height: auto; }
+.p2c-path__art img:nth-child(2) { width: 34%; left: 33%; top: -6%; }
+.p2c-path__case { display: flex; flex-direction: column; gap: 7%; padding-bottom: 8%; }
+.p2c-path__case img { height: auto; flex: none; object-fit: initial; }
+.p2c-path__case i { display: block; height: 5%; margin: 0 8%; border-radius: 99px; background: #E8E6E1; }
+.p2c-path__case i:nth-of-type(2) { margin-right: 30%; }
+.p2c-path__case i:nth-of-type(3) { margin-right: 48%; }
+
+/* «Подачи» (her point 7): one tablet (Portfolio-2 643:4722, screen cut out) with a whole case page scrolling inside;
+   the four layouts from the constructor file (DB2Jwhn 834:5444) switch by the tabs under it, one is marked «Рекомендуем».
+   Screen box measured in the 1099×698.4 tablet: 16.35 / 15.99, 1066.3×666.44 */
+.p2c-stage--scroll { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(26 * var(--u)); }
+.p2c-scroll { position: relative; width: 70%; aspect-ratio: 1099 / 698.41; container-type: inline-size; }
+.p2c-scroll__screen { position: absolute; left: calc(16.35 / 1099 * 100%); top: calc(15.99 / 698.41 * 100%); width: calc(1066.3 / 1099 * 100%);
+  height: calc(666.44 / 698.41 * 100%); overflow: hidden; border-radius: calc(16.35 / 1099 * 100cqw); background: #fff; }
+.p2c-scroll__screen img { position: absolute; left: 0; top: 0; width: 100%; height: auto; opacity: 0; transition: opacity 500ms ease; }
+.p2c-scroll__screen img.is-on { opacity: 1; }
+.p2c-scroll__bezel { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+@media (max-width: 899px) {
+  .p2c-stage--scroll { aspect-ratio: auto; padding: calc(18 * var(--u)) 0; gap: calc(12 * var(--u)); }
+  .p2c-scroll { width: 88%; }
+}
+
+/* «Обзор» (her point 1): the same empty tablet, the constructor plays by itself — cover, idea, tools, finished case */
+/* screens change in place — a plain cross-fade, no sideways slide (the slide read as a jerk, her note 29.10) */
+.p2c-live .p2c-scroll__screen img { height: 100%; object-fit: cover; object-position: top; transition: opacity 500ms ease; }
+
+/* her round of 28.10 */
+/* small segmented switch in the portfolio's style (like RU / EN in the header), but quiet: the chosen option is a soft
+   grey close to the page, not black; small text so it has room */
+.p2c-seg { display: inline-flex; gap: 2px; padding: 3px; background: #fff; border-radius: calc(var(--radius-control) * var(--u)); }
+.p2c-seg__opt { display: inline-flex; align-items: center; gap: calc(6 * var(--u)); padding: calc(5 * var(--u)) calc(10 * var(--u));
+  border: 0; border-radius: calc(var(--radius-control) * var(--u)); background: none; color: var(--text-secondary-aa); font: inherit;
+  font-size: calc(13 * var(--u)); line-height: calc(18 * var(--u)); letter-spacing: 0; cursor: pointer; transition: background-color 250ms ease, color 250ms ease; }
+.p2c-seg__opt:hover { color: var(--text-primary); }
+.p2c-seg__opt[aria-pressed="true"] { background: #EEEDE9; color: var(--text-primary); }
+.p2c-seg__mark { padding: 0 calc(5 * var(--u)); border-radius: calc(3 * var(--u)); background: #fff; color: var(--text-secondary);
+  font-size: calc(11 * var(--u)); line-height: calc(16 * var(--u)); }
+/* phone: no row of words — the switch turns into dots, and only the current option shows its name, as a small white
+   pill among them (tap a dot to switch; the tap area is bigger than the dot). The «Рекомендуем» mark lives in the strip */
+@media (max-width: 899px) {
+  .p2c-seg { align-items: center; gap: calc(8 * var(--u)); padding: 0; background: none; }
+  .p2c-seg__opt { position: relative; white-space: nowrap; font-size: calc(11 * var(--u)); line-height: calc(15 * var(--u));
+    padding: calc(4 * var(--u)) calc(10 * var(--u)); background: #fff; color: var(--text-primary); }
+  .p2c-seg__opt[aria-pressed="true"] { background: #fff; }
+  .p2c-seg__opt[aria-pressed="false"] { width: calc(6 * var(--u)); height: calc(6 * var(--u)); padding: 0; border-radius: 50%;
+    background: #CFCCC6; font-size: 0; line-height: 0; color: transparent; }
+  .p2c-seg__opt[aria-pressed="false"]::after { content: ""; position: absolute; inset: calc(-10 * var(--u)); }
+  .p2c-seg__mark { display: none; }
+}
+/* phone: a pair with a tablet goes one under another, each full width — a tablet in half a phone is unreadable */
+@media (max-width: 899px) {
+  .case-row--stack { flex-direction: column; }
+  .case-row--stack > * { flex: none; width: 100%; }
+  .case-row--stack .p2c-stage--half:has(.p2c-tab, .p2c-scroll) { aspect-ratio: 1560 / 878; }
+  .case-row.case-row--stack .p2c-tab { width: 108%; }   /* the tablet in the picture is 70.45% of it → 76%, like every phone tablet card */
+  /* a phone stacked under a tablet gets the same frame and the same height share as the tablet above it */
+  .case-row--stack .p2c-stage--half:has(.p2c-shot) { aspect-ratio: 1560 / 878; }
+  /* …but zoomed: the phone is big, its bottom (empty space and the buttons) runs off the card; from the status bar to
+     the last row of tools stays in view (frame y 24…536 of 878 — the cut falls under «+ Другой», the hint below is out) */
+  .case-row--stack .p2c-shot { width: 84%; top: 0; transform: translate(-50%, -2.7%); }
+  /* the cut falls between «+ Другой» and the hint under it; a hair of the hint still shows at the very edge, so the
+     edge of the phone screen (white, between the bezels) is covered by a 3px white line */
+  .case-row--stack .p2c-stage--half:has(.p2c-shot)::after { content: ""; position: absolute; z-index: 3; left: 32%; right: 32%; bottom: 0; height: 3px; background: #fff; }
+}
+/* case card in the scheme: the title as text, the room itself in the picture (no ceiling), text lines all the same */
+.p2c-path__case { gap: 0; padding-bottom: 0; }
+.p2c-path__case b { padding: 7% 7% 5%; font-weight: 500; font-size: calc(15 * var(--u)); line-height: 1.1; text-align: left; color: #161616; }
+.p2c-path__case img { height: 46%; flex: none; object-fit: cover; object-position: 50% 72%; }
+.p2c-path__case i { flex: none; height: calc(4 * var(--u)); margin: 6% 7% 0; }
+.p2c-path__case i + i { margin-top: 4%; }
+@media (max-width: 899px) { .p2c-path__case b { font-size: calc(5 * var(--u)); } .p2c-path__case i { height: calc(2 * var(--u)); } }
+/* step dots: small and round, the current one simply darker */
+.p2c-flow__dots { gap: calc(7 * var(--u)); }
+.p2c-flow__dots i { width: calc(6 * var(--u)); height: calc(6 * var(--u)); border-radius: 50%; background: #DAD8D3; transition: background-color 300ms ease; }
+.p2c-flow__dots i.is-on { background: #6F6C67; }
+/* the layouts strip: the four real layouts; no thick frame — the recommended one is lifted with a soft shadow, the
+   others step back a little; the tag is plain white and small; captions smaller */
+.p2c-variants--4 { grid-template-columns: repeat(4, calc(272 * var(--u))); justify-content: center; }
+@media (max-width: 899px) { .p2c-variants--4 { grid-template-columns: repeat(4, 1fr); } }
+.p2c-variant.is-chosen .p2c-variant__pic { outline: 0; box-shadow: 0 calc(14 * var(--u)) calc(34 * var(--u)) rgb(0 0 0 / 0.14); }
+.p2c-variant:not(.is-chosen) .p2c-variant__pic { opacity: 0.6; transition: opacity 300ms ease; }
+.p2c-variant:not(.is-chosen):hover .p2c-variant__pic { opacity: 1; }
+.p2c-tag.t-label { background: #fff; color: var(--text-primary); box-shadow: 0 0 0 1px rgb(0 0 0 / 0.08), 0 calc(2 * var(--u)) calc(8 * var(--u)) rgb(0 0 0 / 0.08); font-size: calc(12 * var(--u)); line-height: calc(16 * var(--u)); padding: calc(3 * var(--u)) calc(8 * var(--u)); }
+.p2c-variant figcaption.t-meta { font-size: calc(14 * var(--u)); line-height: calc(19 * var(--u)); }
+@media (max-width: 899px) {
+  .p2c-tag.t-label { font-size: calc(6 * var(--u)); line-height: calc(8 * var(--u)); padding: calc(1 * var(--u)) calc(3 * var(--u)); }
+  .p2c-variant figcaption.t-meta { font-size: calc(8 * var(--u)); line-height: calc(10 * var(--u)); }
+}
+/* the layouts tablet: scrolls by itself (smooth, by translate) and by hand (wheel / finger: then it is a real scroll
+   box). While it can be scrolled by hand (pointer over it, or the visitor is scrolling it) the tablet lifts off the card
+   with a soft shadow; the shadow goes when it's left alone */
+.p2c-layouts .p2c-scroll__screen { overflow-y: auto; scrollbar-width: none; }
+.p2c-layouts .p2c-scroll__screen::-webkit-scrollbar { display: none; }
+.p2c-layouts .p2c-scroll__screen img.is-on { position: relative; }
+.p2c-layouts .p2c-scroll { border-radius: calc(32.7 / 1099 * 100cqw); transition: box-shadow 400ms ease, translate 400ms ease; }
+.p2c-layouts .p2c-scroll:hover, .p2c-layouts .p2c-scroll.is-hand { box-shadow: 0 calc(24 * var(--u)) calc(60 * var(--u)) rgb(0 0 0 / 0.16); translate: 0 calc(-4 * var(--u)); }
+/* a clicked option keeps no ring; the ring is for the keyboard only */
+.p2c-seg__opt { -webkit-tap-highlight-color: transparent; }
+.p2c-seg__opt:focus { outline: none; }
+.p2c-seg__opt:focus-visible { box-shadow: inset 0 0 0 1px var(--text-secondary); }   /* keyboard only, and quiet */
+/* «Рекомендуем» above the picture, on its left edge, as far from it as the caption below */
+.p2c-variant { position: relative; }
+.p2c-variant > .p2c-tag { position: absolute; left: 0; top: 0; translate: 0 calc(-100% - 12 * var(--u)); }
+@media (max-width: 899px) { .p2c-variant > .p2c-tag { translate: 0 calc(-100% - 4 * var(--u)); } }
+/* decisions: still screens in the same tablet; the preview (a wider screenshot) is shown whole, the white page runs on below it */
+.p2c-still .p2c-scroll__screen img { height: 100%; object-fit: cover; object-position: left top; }
+.p2c-still .p2c-scroll__screen--whole img { object-fit: contain; object-position: top; }
+
+/* «Solution»: the tools question on the tablet and on the phone, the tools get picked one by one (four stills each,
+   Portfolio-2 641:6640 and phone 652:5157, swapped in place) */
+.p2c-tools .p2c-stage--scroll .p2c-scroll { width: 92%; }
+.p2c-shot--stack img { position: absolute; inset: 0; opacity: 0; }
+.p2c-shot--stack img.is-on { opacity: 1; }
+.p2c-tools .p2c-scroll__screen img { height: 100%; object-fit: cover; object-position: left top; opacity: 0; }
+.p2c-tools .p2c-scroll__screen img.is-on { opacity: 1; }
+
+/* ── one logic for every tablet card (her request 28.10): the card keeps the case's frame (1560:878 like every other
+   picture, also on the phone), the tablet is always the same share of a full card (70% wide) and sits exactly in the
+   middle, so the space above and below it is equal everywhere. A switch, when the card has one, sits in that bottom
+   space on the computer; on the phone it moves under the card (there is no room inside) and becomes a row of small
+   pills that scrolls sideways — the current one centred, the edge fades to say there is more. ── */
+.p2c-stage--scroll { display: block; aspect-ratio: 1560 / 878; padding: 0; }
+.p2c-stage--scroll > .p2c-scroll { position: absolute; left: 50%; top: 50%; width: 70%; transform: translate(-50%, -50%); }
+.p2c-stage--half.p2c-stage--scroll { aspect-ratio: 775 / 878; }
+.p2c-stage--half.p2c-stage--scroll > .p2c-scroll { width: 90%; }   /* the same as the tablet pictures in a half card */
+.p2c-stage--scroll > .p2c-seg { position: absolute; left: 50%; bottom: 3%; transform: translateX(-50%); }
+@media (max-width: 899px) {
+  .p2c-stage--scroll { aspect-ratio: 1560 / 878; }
+  .p2c-stage--scroll > .p2c-scroll, .p2c-stage--half.p2c-stage--scroll > .p2c-scroll { width: 76%; }
+  .p2c-stage--scroll:has(> .p2c-seg) { overflow: visible; margin-bottom: calc(40 * var(--u)); }
+  /* the same switch as on the computer, just under the card: a soft pill on the white page (card colour), the chosen
+     option white; if the words don't fit, the switch itself scrolls sideways */
+  .p2c-stage--scroll > .p2c-seg { left: 50%; right: auto; bottom: auto; top: calc(100% + 8 * var(--u)); transform: translateX(-50%);
+    width: max-content; max-width: 100%; justify-content: flex-start; gap: 2px; padding: 3px; background: #F4F3F0;
+    overflow-x: auto; scrollbar-width: none; }
+  .p2c-stage--scroll > .p2c-seg::-webkit-scrollbar { display: none; }
+  .p2c-stage--scroll > .p2c-seg .p2c-seg__opt, .p2c-stage--scroll > .p2c-seg .p2c-seg__opt[aria-pressed="false"] {
+    flex: none; width: auto; height: auto; padding: calc(5 * var(--u)) calc(7 * var(--u)); border-radius: calc(var(--radius-control) * var(--u));
+    font-size: calc(10.5 * var(--u)); line-height: calc(15 * var(--u)); letter-spacing: -0.01em; background: none; color: var(--text-secondary-aa); }
+  .p2c-stage--scroll > .p2c-seg .p2c-seg__opt[aria-pressed="true"] { background: #fff; color: var(--text-primary); }
+  .p2c-stage--scroll > .p2c-seg .p2c-seg__opt::after { content: none; }
+  /* the layouts strip: a 2×2 grid, every layout named */
+  .p2c-variants--4 { grid-template-columns: repeat(2, 1fr); gap: calc(14 * var(--u)) calc(8 * var(--u)); padding-top: calc(14 * var(--u)); }
+  .p2c-variants--4 .p2c-variant figcaption.t-meta { visibility: visible; font-size: calc(11 * var(--u)); line-height: calc(14 * var(--u)); white-space: normal; }
+}
+
+/* changing pictures never blink: the incoming one fades in on top, the outgoing one stays fully visible under it
+   until it is covered (.is-prev); the tools states simply pile up */
+.p2c-scroll__screen img.is-prev, .p2c-shot--stack img.is-prev { opacity: 1; z-index: 1; transition: none; }
+.p2c-scroll__screen img.is-on, .p2c-shot--stack img.is-on { z-index: 2; }
+.p2c-shot--stack img { transition: opacity 220ms ease; }
+.p2c-tools .p2c-scroll__screen img { transition: opacity 220ms ease; }
+
+/* phone: the switch under the card is gone (it broke the spacing). Instead, inside the card at the bottom, thin
+   segments — one per option; the ones already shown are full, the current one fills while it is on screen (by time in
+   the self-playing tablets, by how far the page has scrolled in the layouts tablet). Tap a segment to jump, swipe the
+   card for next / previous. Site greys, 2px lines, a big tap area. */
+.p2c-prog { display: none; }
+@media (max-width: 899px) {
+  .p2c-stage--scroll > .p2c-seg { display: none; }
+  .p2c-stage--scroll:has(> .p2c-seg) { overflow: hidden; margin-bottom: 0; }
+  .p2c-prog { position: absolute; z-index: 2; left: 50%; bottom: calc(1 * var(--u)); transform: translateX(-50%); display: flex; gap: calc(4 * var(--u)); }
+  .p2c-prog button { width: calc(22 * var(--u)); padding: calc(6 * var(--u)) 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .p2c-prog button:focus { outline: none; }   /* no black ring after a tap */
+  .p2c-prog button:focus-visible i { box-shadow: 0 0 0 1px var(--text-secondary); }
+  .p2c-prog i { position: relative; display: block; height: 1.5px; border-radius: 1px; overflow: hidden; background: #E6E4DF; }
+  .p2c-prog i::after { content: ""; position: absolute; inset: 0; background: #B3B0AA; transform-origin: left; transform: scaleX(0); }
+  .p2c-prog .is-done i::after { transform: scaleX(1); }
+  .p2c-live .p2c-prog .is-on i::after { animation: p2c-fill 2800ms linear forwards; }
+  .p2c-layouts .p2c-prog .is-on i::after { transform: scaleX(var(--p, 0)); }
+}
+@media (max-width: 899px) and (prefers-reduced-motion: reduce) { .p2c-live .p2c-prog .is-on i::after { animation: none; transform: scaleX(1); } }
+@keyframes p2c-fill { to { transform: scaleX(1); } }
+
+/* ── the cover (her ref: wearemotto.com/work, the Cresta tile): one quiet colour, the constructor's steps in a column
+   rolling up — the current step ink with a small mark, the rest faint; on «Готовый кейс» the finished Квартира case
+   shows up beside it. case-p2c.js drives it; without it (or with reduced motion) the column stands on «Готовый кейс». ── */
+.p2c-cover { position: relative; aspect-ratio: 1560 / 878; border-radius: calc(10 * var(--u)); overflow: hidden; background: #D9E0E2;
+  --cs: calc(92 * var(--u)); --row: calc(var(--cs) * 1.12); }
+.p2c-cover__list { position: absolute; left: 20%; top: 50%; margin: 0; padding: 0; list-style: none; --i: 5;
+  font-size: var(--cs); line-height: var(--row); letter-spacing: -0.045em; font-weight: 500;
+  transform: translateY(calc(var(--i) * -1 * var(--row) - var(--row) / 2)); transition: transform 450ms cubic-bezier(0.65, 0, 0.35, 1); }
+.p2c-cover__list.no-anim, .p2c-cover__list.no-anim li { transition: none; }
+.p2c-cover__list li { height: var(--row); white-space: nowrap; color: rgb(22 22 22 / 0.16); transition: color 300ms ease; }
+.p2c-cover__list li.is-on { color: #161616; }
+.p2c-cover__mark { position: absolute; left: calc(20% - var(--cs) * 0.85); top: 50%; width: calc(var(--cs) * 0.56); aspect-ratio: 1;
+  translate: 0 -50%; border-radius: 22%; background: #161616; }
+.p2c-cover__mark::after { content: "→"; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: calc(var(--cs) * 0.36); line-height: 1; }
+/* a picture for every step, on the right: the step's own screen, the finished case on «Готовый кейс» */
+.p2c-cover__pics { position: absolute; right: 6%; top: 50%; width: 34%; aspect-ratio: 16 / 10; translate: 0 -50%; }
+.p2c-cover__pics img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: left top;
+  border-radius: calc(8 * var(--u)); box-shadow: 0 0 0 1px rgb(0 0 0 / 0.06); opacity: 0; scale: 0.97;
+  transition: opacity 350ms ease, scale 450ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.p2c-cover__pics img.is-on { opacity: 1; scale: 1; z-index: 1; }
+.p2c-cover__pics img.is-prev { opacity: 1; scale: 1; transition: none; }
+@media (max-width: 899px) {
+  .p2c-cover { --cs: calc(26 * var(--u)); }
+  .p2c-cover__list { left: 17%; }
+  .p2c-cover__mark { left: calc(17% - var(--cs) * 0.85); }
+  .p2c-cover__pics { right: 4%; width: 38%; }
+}
+
+/* ── motion (case-p2c.js adds .is-in when a card reaches the screen): what sits on a card rises a little and
+      fades in, one after another; individual translate/scale properties, so the layout transforms stay intact ── */
+@media (prefers-reduced-motion: no-preference) {
+  .p2c-anim .p2c-rise { opacity: 0; translate: 0 calc(36 * var(--u)); scale: 0.985; }
+  .p2c-anim.is-in .p2c-rise { opacity: 1; translate: 0 0; scale: 1;
+    transition: opacity 700ms ease, translate 1000ms cubic-bezier(0.2, 0.8, 0.2, 1), scale 1000ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--k, 0) * 110ms); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* hidden state is set instantly; the transitions live on .is-in only, so nothing fades out when the JS arms a card */
+  .p2c-anim .p2c-path__art img, .p2c-anim .p2c-path__blank, .p2c-anim .p2c-path__case, .p2c-anim .p2c-path__node p { opacity: 0; }
+  .p2c-anim .p2c-path__art img { translate: 0 calc(60 * var(--u)); scale: 0.9; }
+  .p2c-anim .p2c-path__art img:nth-child(2) { --d: 90ms; }
+  .p2c-anim .p2c-path__art img:nth-child(3) { --d: 180ms; }
+  .p2c-anim .p2c-path__node:nth-of-type(1) p { --d: 260ms; }
+  .p2c-anim .p2c-path__arrow { scale: 0 1; transform-origin: left; }
+  .p2c-anim .p2c-path__arrow:nth-of-type(1) { --d: 380ms; }
+  .p2c-anim .p2c-path__blank, .p2c-anim .p2c-path__node:nth-of-type(2) p { scale: 0.92; --d: 520ms; }
+  .p2c-anim .p2c-path__arrow:nth-of-type(2) { --d: 780ms; }
+  .p2c-anim .p2c-path__case { translate: 0 calc(40 * var(--u)); --d: 900ms; }
+  .p2c-anim .p2c-path__node:nth-of-type(3) p { --d: 1000ms; }
+  .p2c-anim .p2c-path__case i { opacity: 0; scale: 0 1; transform-origin: left; }
+  .p2c-anim .p2c-path__case i:nth-of-type(1) { --d: 1150ms; }
+  .p2c-anim .p2c-path__case i:nth-of-type(2) { --d: 1220ms; }
+  .p2c-anim .p2c-path__case i:nth-of-type(3) { --d: 1290ms; }
+  .p2c-anim.is-in .p2c-path__art img, .p2c-anim.is-in .p2c-path__blank, .p2c-anim.is-in .p2c-path__case, .p2c-anim.is-in .p2c-path__case i,
+  .p2c-anim.is-in .p2c-path__node p, .p2c-anim.is-in .p2c-path__arrow { opacity: 1; translate: 0 0; scale: 1;
+    transition: opacity 450ms ease, translate 650ms cubic-bezier(0.2, 0.8, 0.2, 1), scale 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: var(--d, 0ms); }
+}
+.p2c-mq__answer.is-typing::after, .p2c-shot__answer.is-typing::after { content: ""; display: inline-block; width: 1px; height: 1em; margin-left: 1px; vertical-align: -0.15em;
+  background: currentColor; animation: p2c-caret 900ms steps(1) infinite; }
+@keyframes p2c-caret { 50% { opacity: 0; } }

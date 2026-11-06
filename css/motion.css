@@ -1,0 +1,121 @@
+/* Motion layer for the home page (experiment). Sits on top of styles.css; removing this file + motion.js
+   gives back the static page 1:1. Only transform / opacity are animated. */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);        /* strong ease-out for UI */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);    /* on-screen movement */
+}
+
+/* ── 1. first load (rare → delight budget): header fades, title rises line by line, media settles ── */
+/* mask for the rising lines. Line-height = font size here, so descenders (р, у, д) hang ~0.25em below the line box:
+   the mask is extended downwards by padding and the layout is given the space back with a negative margin */
+.line { display: block; overflow: hidden; padding-bottom: 0.28em; margin-bottom: -0.28em; }
+.line > span { display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .header { animation: m-fade 500ms var(--ease-out) both; }
+  .reel { animation: m-settle 600ms var(--ease-out) 120ms both; }    /* was 1000 ms after 320: hid the (now early) showreel too long */
+  .intro { animation: m-settle 600ms var(--ease-out) 200ms both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header, .hero__title, .reel, .intro { animation: m-fade 200ms ease both; }
+}
+@keyframes m-fade   { from { opacity: 0; } }
+@keyframes m-rise   { from { transform: translateY(105%); } }
+@keyframes m-settle { from { opacity: 0; transform: scale(0.97); } }
+
+/* hero title waits invisible until motion.js has split it into letters (class set in <head>, removed by motion.js) */
+.wave-pending .hero__title, .wave-pending .wave-title:not(#contact-title) { opacity: 0; }   /* until motion.js has split them (no flash of plain text) */
+.wave-wait { opacity: 0; }
+.w { display: inline-block; }   /* a word of a split heading: moves as one piece (text entrance «Г», motion.js) */   /* section headings wait for their letter-by-letter entrance (motion.js) */
+
+/* ── 2. scroll reveal (once per element): set by motion.js only when JS and motion are available ── */
+.reveal { transition: opacity 450ms var(--ease-out), transform 450ms var(--ease-out); transition-delay: var(--d, 0ms); }
+.reveal:not(.is-in) { opacity: 0; transform: translateY(24px); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: opacity 300ms ease; transition-delay: 0ms; }
+  .reveal:not(.is-in) { transform: none; }
+}
+
+/* ── 3. hover / press (tens of times a day → subtle, fine pointers only) ── */
+.case-card__media img, .case-card__media video, .g-item__img img { transition: transform 300ms ease; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .case-card:hover .case-card__media img,
+  .case-card:hover .case-card__media video { transform: scale(1.03); }
+  .g-item:hover .g-item__img img { transform: scale(1.02); }
+  /* inactive category reads as clickable */
+  .gallery__filter button[aria-pressed="false"]:hover { color: var(--text-primary); }
+}
+.pill, .lang__opt, .icon-btn, .gallery__filter button { transition: transform 160ms var(--ease-out), color 200ms ease; }
+@media (prefers-reduced-motion: no-preference) {
+  .pill:active, .lang__opt:active, .icon-btn:active { transform: scale(0.97); }
+  .gallery__filter button:active { transform: scale(0.98); }
+}
+
+/* ── 4. gallery category switch: old grid fades quickly, new items arrive in a short stagger (motion.js) ── */
+.gallery__grids { transition: opacity 150ms var(--ease-out); }
+
+/* ── 5. case covers: the picture fades in slightly enlarged and settles into the card (scale 1.12 → 1, motion.js),
+        only once it is fully loaded; title and text follow. ── */
+@media (prefers-reduced-motion: no-preference) {
+  .case-card.reveal { transform: none !important; opacity: 1 !important; }
+  .case-card.reveal:not(.is-in) .case-card__media { opacity: 0; }
+  .case-card.reveal .case-card__title, .case-card.reveal .case-card__body { transition: opacity 450ms var(--ease-out), transform 450ms var(--ease-out); transition-delay: calc(var(--d, 0ms) + 200ms); }
+  .case-card.reveal:not(.is-in) .case-card__title, .case-card.reveal:not(.is-in) .case-card__body { opacity: 0; transform: translateY(12px); }
+}
+
+/* ── 6. buttons: rolling label (ref: eduardbodak.com). On hover the label rolls back like a cube face, a copy rolls in
+        from below in our gradient (the palette of the heading wave), and the gradient dissolves to ink in place.
+        Mouse only; touch and reduced motion keep the plain label. Wrapped by motion.js. ── */
+:root { --ease-expo-out: cubic-bezier(.5, .6, 0, 1);
+        --grad: linear-gradient(90deg, #F2A58E, #EFA94A 22%, #E79AB4 42%, #7FB8EC 62%, #9C97EA 80%, #8CC56A); }
+.roll { display: inline-grid; perspective: 25em; transform-style: preserve-3d; }
+.roll__default, .roll__hover { grid-area: 1 / 1; display: grid; pointer-events: none; }
+.roll__hover > * { grid-area: 1 / 1; }
+.roll__default { transform-origin: center bottom; transition: translate .4s var(--ease-expo-out), rotate .4s var(--ease-expo-out), opacity .3s ease; }
+.roll__hover { backface-visibility: hidden; translate: 0 100% -12em; rotate: x -120deg; transform-origin: center center;
+               transition: translate .4s var(--ease-expo-out), rotate .4s var(--ease-expo-out); }
+.roll__accent { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+                opacity: 1; transition: opacity 0s .45s; }   /* back to visible only after the label has rolled out */
+.has-roll { overflow: hidden; }            /* the faces roll inside the button */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .has-roll:is(:hover, :focus-visible) .roll__default { translate: 0 -35% -7em; rotate: x -54deg; opacity: 0; transition-delay: .05s; }   /* our pills have no cover plate on the new face, so the old one fades */
+  .has-roll:is(:hover, :focus-visible) .roll__hover { translate: 0; rotate: x 0deg; transition-delay: 75ms; }
+  .has-roll:is(:hover, :focus-visible) .roll__accent { opacity: 0; transition: opacity .6s ease .3s; }   /* gradient holds a beat, then dissolves to ink in place (no wipe) */
+}
+
+/* touch: the roll on tap / on appear (class set by motion.js) */
+@media (prefers-reduced-motion: no-preference) {
+  .has-roll.is-tap .roll__default { translate: 0 -35% -7em; rotate: x -54deg; opacity: 0; transition-delay: .05s; }
+  .has-roll.is-tap .roll__hover { translate: 0; rotate: x 0deg; transition-delay: 75ms; }
+  .has-roll.is-tap .roll__accent { opacity: 0; transition: opacity .6s ease .3s; }
+  .has-roll.roll-reset .roll__default, .has-roll.roll-reset .roll__hover, .has-roll.roll-reset .roll__accent { transition: none !important; }
+}
+
+/* no grey/blue tap flash from the phone itself: buttons have their own press feedback */
+a, button { -webkit-tap-highlight-color: transparent; }
+
+/* ── 7. page → page (ref: oimachi): cross-document View Transitions. The page that is left blurs and fades under a
+        light veil, the header stays in place, the new page comes up from the centre: slightly smaller, blurred →
+        sharp. Chrome / Safari; other browsers simply open the page. ── */
+@view-transition { navigation: auto; }
+.header { view-transition-name: site-header; }
+@media (prefers-reduced-motion: no-preference) {
+  /* 2026-11-04 (her «давай попробуем»): ~0.8 s → ~0.3 s — the most frequent move on the site; no slow-start leave, no pause, lighter blur (Safari) */
+  ::view-transition-group(root) { animation-duration: 300ms; }
+  ::view-transition-old(root) { animation: vt-leave 200ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+  ::view-transition-new(root) { animation: vt-enter 300ms cubic-bezier(0.23, 1, 0.32, 1) both; transform-origin: 50% 50%; }
+  ::view-transition-group(site-header) { animation-duration: 0s; }     /* the header does not move */
+  /* the old page had its header scrolled away (motion.js drops its name): the new header just fades in with the page */
+  ::view-transition-new(site-header):only-child { animation: m-fade 300ms ease 100ms both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 150ms; }
+}
+@keyframes vt-leave { to { opacity: 0; filter: blur(6px); transform: scale(0.99); } }
+@keyframes vt-enter { from { opacity: 0; filter: blur(6px); transform: scale(0.98); } }
+/* arrived through a transition: the header is already there, so its own load fade is skipped */
+.vt-in .header { animation: none; }
+
+/* ── 8. case opening: navigation rows come in one after another (title and lead: the text entrance «Г», motion.js) ── */
+.case-enter .case-nav__case > p, .case-enter .case-nav__sections li, .case-enter .case-nav__link { animation: m-row 500ms var(--ease-out) both; animation-delay: calc(250ms + var(--i, 0) * 45ms); }
+@keyframes m-row { from { opacity: 0; transform: translateY(6px); } }
+.case-enter .case-nav__dot { animation: m-fade 500ms var(--ease-out) 340ms both; }

@@ -1,0 +1,24 @@
+/* «Наверх» (her choice, 2026-11-06): a minimal arrow with character. Hover — the ink arrow flies up and an arrow in our
+   gradient comes in from below (the button itself stays white — her note); press — gives a little; click — the arrow
+   launches up and the page follows (main.js scrolls); the first time the footer shows — one small hop. */
+.up-btn { justify-self: end; align-self: center; display: grid; place-items: center; width: calc(56 * var(--u)); height: calc(56 * var(--u));
+  border-radius: calc(var(--radius-control) * var(--u)); background: var(--bg-surface); color: var(--text-primary); overflow: hidden; position: relative; isolation: isolate;
+  transition: color 200ms ease, scale 160ms cubic-bezier(.23, 1, .32, 1); }
+.up-btn__track { position: relative; width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
+.up-btn__i { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform 320ms cubic-bezier(.23, 1, .32, 1); }
+.up-btn__i + .up-btn__i { transform: translateY(calc(40 * var(--u))); }
+.up-btn:active { scale: .94; }
+@media (hover: hover) and (pointer: fine) {
+  .footer .up-btn:hover { color: var(--text-primary); }   /* styles.css greys «Наверх» on hover — not on the gradient */
+  .up-btn:hover .up-btn__i { transform: translateY(calc(-40 * var(--u))); }
+  .up-btn:hover .up-btn__i + .up-btn__i { transform: none; }
+}
+/* launch: the visible arrow shoots up and out, then everything resets out of sight */
+.up-btn.is-launch .up-btn__i, .up-btn.is-launch .up-btn__i + .up-btn__i { transform: translateY(calc(-40 * var(--u))); transition: transform 380ms cubic-bezier(.55, 0, .45, 1); }
+.up-btn.is-reset .up-btn__i { transition: none; }
+/* hint: one hop when the footer first shows */
+.up-btn.is-hint .up-btn__track { animation: up-hop 700ms cubic-bezier(.23, 1, .32, 1); }
+@keyframes up-hop { 0% { transform: none; } 30% { transform: translateY(calc(-6 * var(--u))); } 55% { transform: translateY(calc(1 * var(--u))); } 100% { transform: none; } }
+@media (max-width: 899px) { .up-btn { width: calc(44 * var(--u)); height: calc(44 * var(--u)); } .up-btn__track { width: calc(18 * var(--u)); height: calc(18 * var(--u)); } }
+@media (prefers-reduced-motion: reduce) { .up-btn__i, .up-btn.is-launch .up-btn__i { transition: none; } .up-btn.is-hint .up-btn__track { animation: none; } }
+.footer--case .up-btn { background: var(--bg-page); }   /* the case footer sits on a white panel */

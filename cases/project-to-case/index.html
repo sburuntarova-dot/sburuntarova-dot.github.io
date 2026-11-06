@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Project → Case — Саша Бурунтарова</title>
+<meta name="description" content="Кейс: как я придумала и запустила конструктор, который превращает учебный проект в кейс для портфолио.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/styles.css">
+<link rel="stylesheet" href="../../css/contact.css">
+<link rel="stylesheet" href="../../css/up-btn.css">
+<link rel="stylesheet" href="../../css/p2c-cover.css">
+<link rel="stylesheet" href="../../css/case.css">
+<link rel="stylesheet" href="../../css/case-p2c.css">
+<link rel="stylesheet" href="../../css/motion.css">
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("case-enter");setTimeout(function(){document.documentElement.classList.remove("case-enter")},3000)}</script>
+<script>(function(){var d=document.documentElement;var w0;function cw(){var w=d.clientWidth;if(w!==w0){w0=w;d.style.setProperty("--cw",w+"px")}}cw();addEventListener("resize",cw);addEventListener("DOMContentLoaded",function(){cw();if(window.ResizeObserver)new ResizeObserver(cw).observe(document.body)});addEventListener("pagereveal",function(e){if(e.viewTransition)d.classList.add("vt-in")})})();</script>
+</head>
+<body>
+<div class="page case-page">
+
+  <header class="header case-top">
+    <div class="header__left">
+      <a href="../../index.html" class="header__logo" aria-label="На главную">
+        <svg viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="13.5" fill="none" stroke="#121212" stroke-width="5"/></svg>
+      </a>
+      <nav class="header__links" aria-label="Разделы">
+        <a class="pill t-label" href="../../index.html#work">Cases</a>
+        <a class="pill t-label" href="../../index.html#about">About</a>
+      </nav>
+    </div>
+    <p class="header__name t-label">Sasha Buruntarova</p>
+    <div class="header__right">
+      <div class="lang t-label" role="group" aria-label="Язык">
+        <button class="lang__opt" type="button" aria-pressed="true">RU</button>
+        <button class="lang__opt" type="button" aria-pressed="false" data-href="en.html" lang="en">EN</button>
+      </div>
+      <a class="pill pill--contact t-label" href="mailto:sburuntarova@gmail.com">Contact</a>
+      <a class="icon-btn" href="mailto:sburuntarova@gmail.com" aria-label="Написать на почту">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.17 4.17h11.66c.92 0 1.67.74 1.67 1.66v8.34c0 .92-.75 1.66-1.67 1.66H4.17c-.92 0-1.67-.74-1.67-1.66V5.83c0-.92.75-1.66 1.67-1.66Z" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 5.83 10 10.83l7.5-5" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <div class="case-layout">
+
+    <!-- case navigation (desktop): all cases, the current one opened to its sections; dot = section on screen -->
+    <aside class="case-nav" aria-label="Навигация по кейсам">
+      <a class="case-nav__link t-label" style="--i:0" href="../art-gluck/index.html">Art Glück</a>
+      <div class="case-nav__case is-current">
+        <p class="t-label" style="--i:1">Project → Case</p>
+        <p class="t-small muted" style="--i:2">Продукт · 2026</p>
+        <div class="case-nav__track">
+        <img class="case-nav__dot" src="../../assets/icons/case-dot.svg" width="4" height="4" alt="">
+        <ol class="case-nav__sections">
+          <li style="--i:3"><a href="#overview" class="is-active"><span class="case-nav__name"><span class="sec-num">01</span>Overview</span></a></li>
+          <li style="--i:4"><a href="#problem"><span class="case-nav__name"><span class="sec-num">02</span>Problem</span></a></li>
+          <li style="--i:5"><a href="#research"><span class="case-nav__name"><span class="sec-num">03</span>Research</span></a></li>
+          <li style="--i:6"><a href="#solution"><span class="case-nav__name"><span class="sec-num">04</span>Solution</span></a></li>
+          <li style="--i:7"><a href="#flow"><span class="case-nav__name"><span class="sec-num">05</span>How it works</span></a></li>
+          <li style="--i:8"><a href="#exploration"><span class="case-nav__name"><span class="sec-num">06</span>Exploration</span></a></li>
+          <li style="--i:9"><a href="#decisions"><span class="case-nav__name"><span class="sec-num">07</span>Decisions</span></a></li>
+        </ol>
+        </div>
+      </div>
+    </aside>
+
+    <main class="case-panel" tabindex="-1">
+
+      <!-- intro -->
+      <section class="case-intro" aria-labelledby="case-title">
+        <div class="case-intro__copy">
+          <div class="case-intro__title-row">
+            <h1 class="t-case-title" id="case-title">Project → Case</h1>
+            <a class="pill pill--subtle case-visit t-label" href="https://artgluck-cases.ag-cases.workers.dev" target="_blank" rel="noopener"><img src="../../assets/icons/link.svg" width="20" height="20" alt="">Visit site</a>
+          </div>
+          <p class="t-lead">Как я придумала и запустила конструктор, который превращает <span class="hl">учебный проект</span> в кейс для портфолио.</p>
+        </div>
+        <dl class="case-meta">
+          <div><dt class="t-label-l">Role</dt><dd class="t-meta">Product Designer<br>Solo Builder</dd></div>
+          <div><dt class="t-label-l">Scope</dt><dd class="t-meta">User Research<br>Product Strategy<br>UX/UI Design<br>Development</dd></div>
+          <div><dt class="t-label-l">Tools</dt><dd class="t-meta">Figma<br>Claude Code<br>Codex<br>Cloudflare</dd></div>
+          <div><dt class="t-label-l">Year</dt><dd class="t-meta">2026</dd></div>
+        </dl>
+        <div class="case-media case-hero">
+          <div class="p2cc" data-base="../../assets/cases/p2c/" role="img" aria-label="Шаги конструктора по очереди: Материалы, О проекте, Идея, Процесс, Решение, Готовый кейс — и экраны на планшете"></div>
+        </div>
+      </section>
+
+      <!-- 01 -->
+      <section class="case-sec" id="overview" aria-labelledby="overview-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">01</span>Overview</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="overview-h">Как помочь студенту превратить проект в кейс, который не стыдно показать?</h2>
+            <p class="t-case-body">Студенты Art Glück делают сильные учебные проекты, но в портфолио они превращаются в папку с рендерами. Я одна прошла весь путь: поговорила со студентами, придумала сценарий, нарисовала интерфейс и шаблоны и запустила сайт с помощью AI-инструментов.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="p2c-stage p2c-stage--scroll p2c-live">
+            <div class="p2c-scroll" role="group" aria-label="Конструктор в планшете: от обложки до готового кейса">
+              <div class="p2c-scroll__screen"><img src="../../assets/cases/p2c/scr-cover.webp" alt="Шаг «Материалы»: выбор обложки из рендеров Квартиры" loading="lazy" decoding="async" class="is-on"><img src="../../assets/cases/p2c/scr-idea.webp" alt="Шаг «Идея»: ответ про образ визуализации" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/scr-tools.webp" alt="Шаг «О проекте»: выбраны 3ds Max, Corona Renderer и Photoshop" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/scr-preview.webp" alt="Шаг «Готовый кейс»: предпросмотр Квартиры" loading="lazy" decoding="async"></div>
+              <img class="p2c-scroll__bezel" src="../../assets/cases/p2c/tablet-empty.webp" alt="">
+            </div>
+            <div class="p2c-seg" role="group" aria-label="Шаги конструктора"><button type="button" class="p2c-seg__opt t-label" aria-pressed="true">Обложка</button><button type="button" class="p2c-seg__opt t-label" aria-pressed="false">Идея</button><button type="button" class="p2c-seg__opt t-label" aria-pressed="false">Инструменты</button><button type="button" class="p2c-seg__opt t-label" aria-pressed="false">Готовый кейс</button></div>
+          </div>
+          <div class="case-row case-row--stack">
+            <div class="p2c-stage p2c-stage--half"><img class="p2c-stage__bg" src="../../assets/cases/p2c/blur-interior.webp" alt=""><div class="p2c-tab p2c-tab--half"><img src="../../assets/cases/p2c/tab-projects.webp" alt="Рабочее пространство: «Мои проекты»" loading="lazy" decoding="async"></div></div>
+            <div class="p2c-stage p2c-stage--half"><img class="p2c-stage__bg" src="../../assets/cases/p2c/blur-interior-2.webp" alt=""><div class="p2c-tab p2c-tab--half"><img src="../../assets/cases/p2c/tab-publish.webp" alt="Настройки публикации кейса" loading="lazy" decoding="async"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 -->
+      <section class="case-sec" id="problem" aria-labelledby="problem-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">02</span>Problem</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="problem-h">Сильные проекты превращаются в слабые кейсы.</h2>
+            <p class="t-case-body">Рендеры у студентов отличные. Но кейс — это история: задача, идея, решения. Между папкой с картинками и такой историей — пустая страница, и на ней всё останавливается.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="p2c-block" role="img" aria-label="Проект, затем пустая страница, затем кейс">
+            <div class="p2c-path">
+              <div class="p2c-path__node">
+                <div class="p2c-path__art"><img src="../../assets/cases/p2c/kv-1.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/kv-3.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/kv-5.webp" alt="" loading="lazy" decoding="async"></div>
+                <p class="t-label-l">Проект</p><p class="t-meta">рендеры, чертежи, референсы</p>
+              </div>
+              <span class="p2c-path__arrow"></span>
+              <div class="p2c-path__node">
+                <div class="p2c-path__blank">?</div>
+                <p class="t-label-l">Пустая страница</p><p class="t-meta">с чего начать и что писать</p>
+              </div>
+              <span class="p2c-path__arrow"></span>
+              <div class="p2c-path__node">
+                <div class="p2c-path__case"><b>Квартира в центре Москвы</b><img src="../../assets/cases/p2c/kv-1.webp" alt="" loading="lazy" decoding="async"><i></i><i></i><i></i></div>
+                <p class="t-label-l">Кейс</p><p class="t-meta">история проекта для портфолио</p>
+              </div>
+            </div>
+          </div>
+          <div class="case-row">
+            <figure class="case-media case-media--half"><img src="../../assets/cases/p2c/kv-1.webp" alt="Рендер студентки: гостиная с зелёной стеной" loading="lazy" decoding="async"></figure>
+            <figure class="case-media case-media--half"><img src="../../assets/cases/p2c/kv-5.webp" alt="Рендер студентки: кухня" loading="lazy" decoding="async"></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 -->
+      <section class="case-sec" id="research" aria-labelledby="research-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">03</span>Research</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="research-h">Поговорила с тремя самыми активными студентами.</h2>
+            <p class="t-case-body">Хотела понять, почему кейсов нет даже у них. Ответы оказались не про дизайн.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="p2c-block">
+            <div class="p2c-quotes">
+              <figure class="p2c-quote"><blockquote>Не знаю, с чего начать. Открываю пустой документ — и закрываю.</blockquote><figcaption class="t-meta">Студентка курса визуализации интерьера</figcaption></figure>
+              <figure class="p2c-quote"><blockquote>Не понимаю, что важно работодателю: процесс, идея или только картинки?</blockquote><figcaption class="t-meta">Студент курса 3ds Max</figcaption></figure>
+              <figure class="p2c-quote"><blockquote>Писать о своей работе неловко — кажется, что хвастаюсь.</blockquote><figcaption class="t-meta">Студентка курса дизайна интерьера</figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <div class="case-sec__head case-sec__head--sub">
+          <div class="case-sec__text">
+            <h3 class="t-case-heading">Мешает не дизайн, а незнание, что рассказывать.</h3>
+            <p class="t-case-body">Значит, продукту не нужен ещё один красивый шаблон. Ему нужно задавать правильные вопросы — по одному, в том порядке, в котором складывается история проекта.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="case-row">
+            <div class="p2c-stage p2c-stage--half"><img class="p2c-stage__bg" src="../../assets/cases/p2c/blur-interior.webp" alt=""><p class="p2c-note t-label"><span class="desk">Обычно: пустой шаблон</span><span class="mob">Обычно</span></p>
+              <div class="p2c-shot" role="img" aria-label="Обычный путь: пустой шаблон кейса с пятью пустыми полями на телефоне"><img src="../../assets/cases/p2c/phone-blank.webp" alt="" loading="lazy" decoding="async"></div></div>
+            <div class="p2c-stage p2c-stage--half"><img class="p2c-stage__bg" src="../../assets/cases/p2c/blur-interior-2.webp" alt=""><p class="p2c-note t-label"><span class="desk">Project → Case: один вопрос</span><span class="mob">Project → Case</span></p>
+              <div class="p2c-shot" role="img" aria-label="Экран конструктора на телефоне: вопрос «Какова ваша роль?» и ответ студентки"><img src="../../assets/cases/p2c/phone-role.webp" alt="" loading="lazy" decoding="async"><p class="p2c-shot__answer">Я автор визуализации. Придумала композицию кадра, подобрала материалы и цветовую палитру, расставила мебель и предметы, настроила свет и довела изображение до финального вида.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 -->
+      <section class="case-sec" id="solution" aria-labelledby="solution-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">04</span>Solution</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="solution-h">Project → Case: вопросы вместо пустой страницы.</h2>
+            <p class="t-case-body">Студент проходит шесть коротких шагов: отвечает на простые вопросы о проекте и загружает картинки. Конструктор сам собирает из ответов историю, подбирает шаблон и даёт ссылку на готовый кейс — её можно отправить работодателю.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="case-row case-row--stack p2c-tools">
+            <div class="p2c-stage p2c-stage--half p2c-stage--scroll">
+              <div class="p2c-scroll" role="img" aria-label="Конструктор на планшете: вопрос «Какие инструменты вы использовали?», отмечаются 3ds Max, Corona Renderer и Photoshop">
+                <div class="p2c-scroll__screen"><img src="../../assets/cases/p2c/tools-d0.webp" alt="" loading="lazy" decoding="async" class="is-on"><img src="../../assets/cases/p2c/tools-d1.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/tools-d2.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/tools-d3.webp" alt="" loading="lazy" decoding="async"></div>
+                <img class="p2c-scroll__bezel" src="../../assets/cases/p2c/tablet-empty.webp" alt="">
+              </div>
+            </div>
+            <div class="p2c-stage p2c-stage--half">
+              <div class="p2c-shot p2c-shot--stack" role="img" aria-label="Тот же вопрос на телефоне: инструменты отмечаются по одному"><img src="../../assets/cases/p2c/tools-m0.webp" alt="" loading="lazy" decoding="async" class="is-on"><img src="../../assets/cases/p2c/tools-m1.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/tools-m2.webp" alt="" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/tools-m3.webp" alt="" loading="lazy" decoding="async"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 -->
+      <section class="case-sec" id="flow" aria-labelledby="flow-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">05</span>How it works</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="flow-h">Шесть шагов от папки с рендерами до кейса.</h2>
+          </div>
+        </div>
+        <div class="p2c-flow">
+          <div class="p2c-flow__aside" aria-hidden="true">
+            <div class="p2c-flow__sticky">
+              <div class="p2c-flow__dots"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="p2c-flow__caps">
+                <div class="p2c-flow__cap"><p class="t-label-l muted">1 из 6</p><h4 class="t-case-heading">Материалы</h4><p class="t-case-body">Студент загружает работы, выбирает обложку и порядок кадров.</p></div>
+                <div class="p2c-flow__cap"><p class="t-label-l muted">2 из 6</p><h4 class="t-case-heading">О проекте</h4><p class="t-case-body">Что за проект, для кого, какая задача, роль и инструменты — короткие ответы вместо эссе.</p></div>
+                <div class="p2c-flow__cap"><p class="t-label-l muted">3 из 6</p><h4 class="t-case-heading">Идея</h4><p class="t-case-body">В чём главная идея — одной-двумя фразами. С ней кейс читается как история.</p></div>
+                <div class="p2c-flow__cap"><p class="t-label-l muted">4 из 6</p><h4 class="t-case-heading">Процесс</h4><p class="t-case-body">Как развивалась работа: от первых объёмов до деталей.</p></div>
+                <div class="p2c-flow__cap"><p class="t-label-l muted">5 из 6</p><h4 class="t-case-heading">Решение</h4><p class="t-case-body">Что было самым сложным и как это решили — то, что работодатель ищет в кейсе.</p></div>
+                <div class="p2c-flow__cap"><p class="t-label-l muted">6 из 6</p><h4 class="t-case-heading">Готовый кейс</h4><p class="t-case-body">Конструктор собирает страницу: студент проверяет её, правит и публикует.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="p2c-flow__frames">
+            <div class="p2c-flow__frame p2c-stage"><img class="p2c-stage__bg" src="../../assets/cases/p2c/blur-interior.webp" alt=""><div class="p2c-tab"><img src="../../assets/cases/p2c/tab-1.webp" alt="Экран шага «Материалы»" loading="lazy" decoding="async"></div></div>
+            <div class="p2c-flow__inline"><p class="t-label-l muted">1 из 6</p><h4 class="t-case-heading">Материалы</h4><p class="t-case-body">Студент загружает работы, выбирает обложку и порядок кадров.</p></div>
+            <div class="p2c-flow__frame p2c-stage"><img class="p2c-stage__bg" src="../../assets/cases/p2c/blur-interior-2.webp" alt=""><div class="p2c-tab"><img src="../../assets/cases/p2c/tab-2.webp" alt="Экран шага «О проекте»" loading="lazy" decoding="async"></div></div>
+            <div class="p2c-flow__inline"><p class="t-label-l muted">2 из 6</p><h4 class="t-case-heading">О проекте</h4><p class="t-case-body">Что за проект, для кого, какая задача, роль и инструменты — короткие ответы вместо эссе.</p></div>
+            <div class="p2c-flow__frame p2c-stage"><img class="p2c-stage__bg" src="../../assets/cases/p2c/blur-interior.webp" alt=""><div class="p2c-tab"><img src="../../assets/cases/p2c/tab-3.webp" alt="Экран шага «Идея»" loading="lazy" decoding="async"></div></div>
+            <div class="p2c-flow__inline"><p class="t-label-l muted">3 из 6</p><h4 class="t-case-heading">Идея</h4><p class="t-case-body">В чём главная идея — одной-двумя фразами. С ней кейс читается как история.</p></div>
+            <div class="p2c-flow__frame p2c-stage"><img class="p2c-stage__bg" src="../../assets/cases/p2c/blur-interior-2.webp" alt=""><div class="p2c-tab"><img src="../../assets/cases/p2c/tab-4.webp" alt="Экран шага «Процесс»" loading="lazy" decoding="async"></div></div>
+            <div class="p2c-flow__inline"><p class="t-label-l muted">4 из 6</p><h4 class="t-case-heading">Процесс</h4><p class="t-case-body">Как развивалась работа: от первых объёмов до деталей.</p></div>
+            <div class="p2c-flow__frame p2c-stage"><img class="p2c-stage__bg" src="../../assets/cases/p2c/blur-interior.webp" alt=""><div class="p2c-tab"><img src="../../assets/cases/p2c/tab-5.webp" alt="Экран шага «Решение»" loading="lazy" decoding="async"></div></div>
+            <div class="p2c-flow__inline"><p class="t-label-l muted">5 из 6</p><h4 class="t-case-heading">Решение</h4><p class="t-case-body">Что было самым сложным и как это решили — то, что работодатель ищет в кейсе.</p></div>
+            <div class="p2c-flow__frame p2c-stage"><img class="p2c-stage__bg" src="../../assets/cases/p2c/blur-interior-2.webp" alt=""><div class="p2c-tab"><img src="../../assets/cases/p2c/tab-6.webp" alt="Экран шага «Готовый кейс»" loading="lazy" decoding="async"></div></div>
+            <div class="p2c-flow__inline"><p class="t-label-l muted">6 из 6</p><h4 class="t-case-heading">Готовый кейс</h4><p class="t-case-body">Конструктор собирает страницу: студент проверяет её, правит и публикует.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 -->
+      <section class="case-sec" id="exploration" aria-labelledby="exploration-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">06</span>Exploration</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="exploration-h">Сделала четыре подачи — студент выбирает сам.</h2>
+            <p class="t-case-body">Кейс должен работать для любого проекта: с тремя картинками и с тридцатью, с длинными ответами и с короткими. Конструктор смотрит на материалы и советует подходящую подачу, но выбрать можно любую.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="p2c-block">
+            <div class="p2c-variants p2c-variants--4">
+              <figure class="p2c-variant is-chosen"><span class="p2c-tag t-label">Рекомендуем</span><div class="p2c-variant__pic"><img src="../../assets/cases/p2c/thumb-11.webp" alt="Подача «Как у студий»" loading="lazy" decoding="async"></div><figcaption class="t-meta">01 · Как у студий</figcaption></figure>
+              <figure class="p2c-variant"><div class="p2c-variant__pic"><img src="../../assets/cases/p2c/thumb-13.webp" alt="Подача «Кадр главный»" loading="lazy" decoding="async"></div><figcaption class="t-meta">02 · Кадр главный</figcaption></figure>
+              <figure class="p2c-variant"><div class="p2c-variant__pic"><img src="../../assets/cases/p2c/thumb-14.webp" alt="Подача «Слайды»" loading="lazy" decoding="async"></div><figcaption class="t-meta">03 · Слайды</figcaption></figure>
+              <figure class="p2c-variant"><div class="p2c-variant__pic"><img src="../../assets/cases/p2c/thumb-15.webp" alt="Подача «Поля и индекс»" loading="lazy" decoding="async"></div><figcaption class="t-meta">04 · Поля и индекс</figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <div class="case-sec__head case-sec__head--sub">
+          <div class="case-sec__text">
+            <h3 class="t-case-heading">Советуем подходящую, решает студент.</h3>
+            <p class="t-case-body">Каждая подача держит и три картинки, и двадцать; ответы студента в ней читаются как история, а не как подписи к рендерам. А раскладка строится из простых блоков — её легко собирать автоматически.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="p2c-stage p2c-stage--scroll p2c-layouts">
+            <div class="p2c-scroll" role="group" aria-label="Четыре подачи кейса в планшете, страница прокручивается">
+              <div class="p2c-scroll__screen"><img src="../../assets/cases/p2c/layout-11.webp" alt="Подача «Как у студий»: страница кейса целиком" loading="lazy" decoding="async" class="is-on"><img src="../../assets/cases/p2c/layout-13.webp" alt="Подача «Кадр главный»: страница кейса целиком" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/layout-14.webp" alt="Подача «Слайды»: страница кейса целиком" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/layout-15.webp" alt="Подача «Поля и индекс»: страница кейса целиком" loading="lazy" decoding="async"></div>
+              
+              <img class="p2c-scroll__bezel" src="../../assets/cases/p2c/tablet-empty.webp" alt="">
+            </div>
+            <div class="p2c-seg" role="group" aria-label="Подачи кейса"><button type="button" class="p2c-seg__opt t-label" aria-pressed="true">Как у студий<span class="p2c-seg__mark">Рекомендуем</span></button><button type="button" class="p2c-seg__opt t-label" aria-pressed="false">Кадр главный</button><button type="button" class="p2c-seg__opt t-label" aria-pressed="false">Слайды</button><button type="button" class="p2c-seg__opt t-label" aria-pressed="false">Поля и индекс</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 -->
+      <section class="case-sec" id="decisions" aria-labelledby="decisions-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">07</span>Decisions</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="decisions-h">Конструктор не бросает студента, когда что-то идёт не так.</h2>
+            <p class="t-case-body">Мало картинок, файл не загрузился, сборка упала — на каждый случай есть понятное объяснение и следующий шаг. Ответы при этом никогда не теряются. А в портфолио кейс попадает только после проверки куратора.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="p2c-stage p2c-stage--scroll p2c-live">
+            <div class="p2c-scroll" role="group" aria-label="Сложные состояния конструктора в планшете">
+              <div class="p2c-scroll__screen"><img src="../../assets/cases/p2c/state-few.webp" alt="Состояние «Материалов пока немного»: соберём короткий кейс из того, что есть" loading="lazy" decoding="async" class="is-on"><img src="../../assets/cases/p2c/state-upload.webp" alt="Состояние «Не удалось загрузить изображение»: остальные сохранены, можно повторить" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/state-build.webp" alt="Состояние «Не удалось собрать кейс»: ответы и изображения сохранены, можно попробовать снова" loading="lazy" decoding="async"><img src="../../assets/cases/p2c/state-review.webp" alt="Состояние «Кейс отправлен на проверку»: куратор смотрит текст, изображения и референс" loading="lazy" decoding="async"></div>
+              <img class="p2c-scroll__bezel" src="../../assets/cases/p2c/tablet-empty.webp" alt="">
+            </div>
+            <div class="p2c-seg" role="group" aria-label="Состояния"><button type="button" class="p2c-seg__opt t-label" aria-pressed="true">Мало материалов</button><button type="button" class="p2c-seg__opt t-label" aria-pressed="false">Ошибка загрузки</button><button type="button" class="p2c-seg__opt t-label" aria-pressed="false">Ошибка сборки</button><button type="button" class="p2c-seg__opt t-label" aria-pressed="false">Проверка</button></div>
+          </div>
+        </div>
+        </section>
+
+      <!-- next case -->
+      <a class="case-sec case-next" href="../art-gluck/index.html" aria-label="Следующий кейс: Art Glück">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l">Следующий кейс</p>
+          <div class="case-sec__text">
+            <p class="t-lead">Система бренда Art Glück</p>
+          </div>
+        </div>
+        <div class="case-next__media"><video data-autoplay muted loop playsinline preload="none" poster="../../assets/video/cover-artgluck.jpg" data-src-desktop="../../assets/video/cover-artgluck" data-src-mobile="../../assets/video/cover-artgluck-m"></video></div>
+      </a>
+
+      <footer class="footer footer--case"><p class="footer__copy t-card-body">Саша Бурунтарова © 2026</p><a class="footer__up up-btn" href="#" aria-label="Наверх"><span class="up-btn__track"><svg class="up-btn__i" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 16V4M4.5 9.5 10 4l5.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="up-btn__i" viewBox="0 0 20 20" fill="none" aria-hidden="true"><defs><linearGradient id="up-grad" x1="4" y1="16" x2="16" y2="4" gradientUnits="userSpaceOnUse"><stop stop-color="#F2A58E"/><stop offset=".25" stop-color="#EFA94A"/><stop offset=".5" stop-color="#E79AB4"/><stop offset=".75" stop-color="#7FB8EC"/><stop offset="1" stop-color="#9C97EA"/></linearGradient></defs><path d="M10 16V4M4.5 9.5 10 4l5.5 5.5" stroke="url(#up-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></footer>
+    </main>
+  </div>
+
+</div>
+<script src="../../js/main.js" defer></script>
+<script src="../../js/contact.js" defer></script>
+<script src="../../js/up-btn.js" defer></script>
+<script src="../../js/p2c-cover.js" defer></script>
+<script src="../../js/case.js" defer></script>
+<script src="../../js/case-p2c.js" defer></script>
+<script src="../../js/motion.js" defer></script>
+</body>
+</html>

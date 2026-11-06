@@ -1,0 +1,40 @@
+/* Art Glück case — the catalog phone (04 Website, 04-website-3b): her phone picture stays as it is (bezel and the iPhone
+   status bar on top all the time); over its screen, below the status bar, the live artgluck.ru/catalog/ — the site's
+   fixed header and the page scrolling under it. Screen measured in the 1550×1756 picture: x 323…1233, from y 270 down. */
+.ag-phone { position: relative; }
+.ag-phone__screen { position: absolute; left: calc(323 / 1550 * 100%); width: calc(911 / 1550 * 100%); top: calc(270 / 1756 * 100%); bottom: 0;
+  overflow: hidden; background: #fff; }
+.ag-phone__screen img { position: absolute; left: 0; top: 0; width: 100%; height: auto; display: block; }
+.ag-phone__header { z-index: 1; }
+.ag-phone__page { margin-top: calc(64 / 393 * 100%); }   /* starts under the 64 css px header (393 css px wide screen; a % margin counts from the width) */
+
+/* the event banner (04-website-5): the site's hero slider. The screen in the 2400×1351 picture: x 254…2144, y 144…1207
+   (16:9, radius ≈ 30). Inside, in the banner's own 1280×720 grid: the indicator at x 40, y 674, 6 px tall, 6 px gaps —
+   the current slide a 120 px bar that fills white, the others 6 px dots, white 50%; the caption right after it. */
+.ag-events { position: relative; }
+.ag-events__screen { position: absolute; left: calc(254 / 2400 * 100%); width: calc(1891 / 2400 * 100%); top: calc(144 / 1351 * 100%);
+  aspect-ratio: 16 / 9; overflow: hidden; border-radius: calc(30 / 2400 * 100%) / calc(30 / 1351 * 100%); container-type: inline-size;
+  box-shadow: 0 0 0 2px #F5F5F5; }   /* the card colour: covers the picture's own screen edge, no hairline frame */
+.ag-events__screen > img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 600ms ease; }
+.ag-events__screen > img.is-on { opacity: 1; z-index: 1; }
+.ag-events__screen > img.is-prev { opacity: 1; z-index: 0; transition: none; }
+.ag-events__bar { position: absolute; z-index: 2; left: calc(40 / 1280 * 100cqw); top: calc(674 / 1280 * 100cqw); height: calc(6 / 1280 * 100cqw);
+  display: flex; align-items: center; gap: calc(6 / 1280 * 100cqw); }
+.ag-events__bar i { position: relative; width: calc(6 / 1280 * 100cqw); height: 100%; border-radius: 99px; overflow: hidden;
+  background: rgb(255 255 255 / 0.5); transition: width 450ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.ag-events__bar i.is-on { width: calc(120 / 1280 * 100cqw); }
+.ag-events__bar i::after { content: ""; position: absolute; inset: 0; background: #fff; transform-origin: left; transform: scaleX(0); }
+.ag-events__bar i.is-on::after { animation: ag-fill var(--ag-slide, 4s) linear forwards; }
+@keyframes ag-fill { to { transform: scaleX(1); } }
+.ag-events__cap { margin-left: calc(10 / 1280 * 100cqw); padding: calc(3 / 1280 * 100cqw) calc(9 / 1280 * 100cqw); border-radius: calc(6 / 1280 * 100cqw);
+  background: rgb(255 255 255 / 0.9); color: #161616; white-space: nowrap; font-weight: 500;
+  font-size: max(7px, calc(13 / 1280 * 100cqw)); line-height: 1.35; transition: opacity 300ms ease; }
+@media (prefers-reduced-motion: reduce) { .ag-events__bar i.is-on::after { animation: none; transform: scaleX(1); } }
+
+/* the InDesign course landing (04-website-4a): the whole page (Figma zLDub… «сайт», 441:18029, 1280×8201) scrolls in
+   the place the picture shows it — x 156…1394 of 1550, from y 83 down to the card's bottom, top corners r 10 */
+.ag-page { position: relative; }
+/* 2 px wider / higher than the page in the picture, so its edge never peeks out as a hairline frame around the scroll */
+.ag-page__screen { position: absolute; left: calc(154 / 1550 * 100%); width: calc(1243 / 1550 * 100%); top: calc(81 / 1756 * 100%); bottom: 0;
+  overflow: hidden; border-radius: calc(10 / 1550 * 100%) calc(10 / 1550 * 100%) 0 0 / calc(10 / 1756 * 100%) calc(10 / 1756 * 100%) 0 0; background: #fff; }
+.ag-page__screen img { position: absolute; left: 0; top: 0; width: 100%; height: auto; display: block; }

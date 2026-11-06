@@ -1,0 +1,175 @@
+/* Case pages. Values 1:1 from Figma Portfolio-2 («Верстка»): Case Art Glück — Desktop 1920 (356:1044) and
+   Mobile 390 (358:740). Same unit system as styles.css: design px × --u. */
+
+:root {
+  /* text styles of the case pages: size / line / tracking (design px) */
+  --case-title-s: 44;   --case-title-l: 44.88;  --case-title-t: -2.2;
+  --lead-s: 64;         --lead-l: 65.28;        --lead-t: -3.2;
+  --case-heading-s: 44; --case-heading-l: 46.2; --case-heading-t: -2.2;
+  --case-body-s: 21;    --case-body-l: 29.4;    --case-body-t: -0.63;
+  --label-l-s: 19;      --label-l-l: 26.6;      --label-l-t: -0.57;
+  --meta-s: 19;         --meta-l: 24.7;         --meta-t: -0.57;
+}
+@media (max-width: 899px) {
+  :root {
+    --case-title-s: 13;   --case-title-l: 15.6;   --case-title-t: -0.19;
+    --lead-s: 24;         --lead-l: 26.4;         --lead-t: -0.72;
+    --case-heading-s: 18; --case-heading-l: 20.7; --case-heading-t: -0.54;
+    --case-body-s: 14;    --case-body-l: 19.6;    --case-body-t: 0;
+    --label-l-s: 13;      --label-l-l: 15.6;      --label-l-t: -0.19;
+    --meta-s: 13;         --meta-l: 16.25;        --meta-t: 0;
+  }
+}
+.t-case-title   { font-weight: 500; font-size: calc(var(--case-title-s) * var(--u));   line-height: calc(var(--case-title-l) * var(--u));   letter-spacing: calc(var(--case-title-t) * var(--u)); }
+.t-lead         { font-weight: 500; font-size: calc(var(--lead-s) * var(--u));         line-height: calc(var(--lead-l) * var(--u));         letter-spacing: calc(var(--lead-t) * var(--u)); }
+.t-case-heading { font-weight: 500; font-size: calc(var(--case-heading-s) * var(--u)); line-height: calc(var(--case-heading-l) * var(--u)); letter-spacing: calc(var(--case-heading-t) * var(--u)); }
+.t-case-body    { font-weight: 400; font-size: calc(var(--case-body-s) * var(--u));    line-height: calc(var(--case-body-l) * var(--u));    letter-spacing: calc(var(--case-body-t) * var(--u)); }
+.t-label-l      { font-weight: 500; font-size: calc(var(--label-l-s) * var(--u));     line-height: calc(var(--label-l-l) * var(--u));     letter-spacing: calc(var(--label-l-t) * var(--u)); }
+.t-meta         { font-weight: 400; font-size: calc(var(--meta-s) * var(--u));         line-height: calc(var(--meta-l) * var(--u));         letter-spacing: calc(var(--meta-t) * var(--u)); }
+.muted { color: var(--text-secondary); }
+
+/* section numbers: «01   Problem» — three spaces in the mockup */
+.sec-num { margin-right: 0.62em; }
+
+/* ── frame: header, case navigation (left), white panel (right) ─────── */
+.case-top { padding-top: var(--g); box-sizing: content-box; }
+/* phone: smart header (case.js) — sticky; slides away while scrolling down, back on scroll up. Once the page is
+   scrolled it sits on a solid strip of the page colour (full width) whose lower edge fades out softly */
+@media (max-width: 899px) {
+  .case-top { position: sticky; top: 0; z-index: 20; transition: transform 380ms var(--ease-out, ease); }
+  .case-top::before { content: ""; position: absolute; z-index: -1; inset: 0 calc(-1 * var(--g)) calc(-2 * var(--g));
+    background: linear-gradient(var(--bg-page) calc(100% - var(--g)), rgb(240 240 240 / 0));
+    opacity: 0; transition: opacity 250ms ease; pointer-events: none; }
+  .case-top.is-stuck::before { opacity: 1; }
+  .case-top.is-hidden { transform: translateY(calc(-100% - 2 * var(--g) - 2px)); }
+}
+@media (prefers-reduced-motion: reduce) { .case-top { transition: none; } }
+
+/* desktop: the page is a window — header, case navigation and the white panel stay put; only the content inside
+   the panel scrolls (her idea, 2026-10-23). The panel fills the window down to one gutter above its bottom edge. */
+@media (min-width: 900px) {
+  html:has(.case-page), html:has(.case-page) body { height: 100%; overflow: hidden; }
+  .case-page { height: 100%; display: flex; flex-direction: column; }
+  .case-top { flex: none; }
+  .case-layout { flex: 1 1 auto; min-height: 0; align-items: stretch; padding-bottom: var(--g); }
+  .case-nav { position: static; align-self: flex-start; }
+  .case-panel { height: 100%; overflow-y: auto; overscroll-behavior: contain; scroll-behavior: smooth;
+    scrollbar-width: none; }                                   /* no scrollbar inside the rounded window */
+  .case-panel::-webkit-scrollbar { display: none; }
+  .case-panel:focus { outline: none; }
+  .footer--case { margin-top: 0; padding: calc(40 * var(--u)) calc(30 * var(--u)) calc(30 * var(--u)); }
+  /* a section opened from the navigation stops with the same inset from the panel top as the case title (30) */
+  .case-sec { scroll-margin-top: calc(30 * var(--u)); }
+}
+@media (min-width: 900px) and (prefers-reduced-motion: reduce) { .case-panel { scroll-behavior: auto; } }
+.case-layout { display: flex; align-items: flex-start; gap: calc(10 * var(--u)); margin-top: calc(12 * var(--u)); }
+.case-panel { flex: none; width: calc(1580 * var(--u)); margin-left: auto; background: var(--bg-surface); border-radius: calc(10 * var(--u)); }
+
+.case-nav { position: sticky; top: calc(90 * var(--u)); width: calc(308 * var(--u)); margin-top: calc(30 * var(--u));
+            display: flex; flex-direction: column; gap: calc(40 * var(--u)); }
+.case-nav__case { display: flex; flex-direction: column; gap: calc(2 * var(--u)); }
+.case-nav__track { position: relative; margin-top: calc(14 * var(--u)); }
+.case-nav__sections { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: calc(10 * var(--u)); }
+/* every row keeps the active row's height (Label L line), so nothing below shifts when the section changes */
+.case-nav__sections a { display: flex; align-items: center; min-height: calc(var(--label-l-l) * var(--u)); color: var(--text-secondary);
+  font-weight: 400; font-size: calc(var(--body-s) * var(--u)); line-height: calc(var(--body-l) * var(--u)); letter-spacing: calc(var(--body-t) * var(--u));
+  transition: color 300ms ease, font-weight 300ms ease; }
+.case-nav__name { display: inline-block; transition: transform 450ms var(--ease-out, ease); }
+/* the section on screen (Figma «Section item» active): ink, Label L weight, moved right by dot 4 + gap 10 */
+.case-nav__sections a.is-active { color: var(--text-primary); font-weight: 500; }
+.case-nav__sections a.is-active .case-nav__name { transform: translateX(calc(14 * var(--u))); }
+/* one dot for the whole list: it slides to the active row (case.js sets --dot-y) */
+.case-nav__dot { position: absolute; left: 0; top: 0; width: calc(4 * var(--u)); height: calc(4 * var(--u));
+  transform: translateY(var(--dot-y, 0px)); transition: transform 550ms cubic-bezier(0.34, 1.3, 0.64, 1); }
+.case-nav__dot.no-anim, .no-anim .case-nav__name { transition: none; }
+@media (prefers-reduced-motion: reduce) { .case-nav__dot, .case-nav__name { transition: none; } }
+/* the other case: name only (her note: the info line under it was extra); on hover the label rolls like the buttons
+   (gradient face, then ink) — motion.js wraps it */
+.case-nav__link { align-self: flex-start; color: var(--text-secondary); transition: color 200ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .case-nav__sections a:not(.is-active):hover, .case-nav__link:hover { color: var(--text-primary); }
+}
+
+/* ── intro ──────────────────────────────────────────────────────────── */
+.case-intro { position: relative; padding: calc(30 * var(--u)) calc(10 * var(--u)) calc(182 * var(--u)); }
+.case-intro__copy { display: flex; flex-direction: column; gap: calc(95 * var(--u)); width: calc(1300 * var(--u)); margin-left: calc(20 * var(--u)); }
+.case-intro__title-row h1 { margin: 0; font-weight: 500; }
+/* Visit site: Button / Secondary + Icon / 37, bg/subtle on the white panel; desktop: top right corner of the panel */
+.pill--subtle { background: var(--bg-subtle); gap: calc(6 * var(--u)); }
+.pill--subtle img { width: calc(20 * var(--u)); height: calc(20 * var(--u)); flex: none; }
+.case-visit { position: absolute; top: calc(31 * var(--u)); right: calc(10 * var(--u)); }
+.case-meta { display: flex; gap: calc(20 * var(--u)); margin: calc(60 * var(--u)) 0 0 calc(20 * var(--u)); height: calc(130 * var(--u)); }
+.case-meta > div { width: calc(360 * var(--u)); display: flex; flex-direction: column; gap: calc(4 * var(--u)); }
+.case-meta dd { margin: 0; color: var(--text-secondary); }
+.case-intro .case-hero { margin-top: calc(40 * var(--u)); }
+
+/* ── sections ───────────────────────────────────────────────────────── */
+.case-sec { display: block; padding: 0 calc(10 * var(--u)) calc(160 * var(--u)); }
+.case-sec__head { display: flex; align-items: flex-start; padding: 0 calc(20 * var(--u)) calc(60 * var(--u)); }
+.case-sec__head--sub { padding-top: calc(150 * var(--u)); }
+.case-sec__label { flex: none; width: calc(420 * var(--u)); padding-top: calc(6 * var(--u)); color: var(--text-secondary); }
+.case-sec__head--sub .case-sec__text { margin-left: calc(420 * var(--u)); }
+.case-sec__text { width: calc(820 * var(--u)); display: flex; flex-direction: column; gap: calc(24 * var(--u)); }
+.case-sec__text h2, .case-sec__text h3 { margin: 0; }
+.case-sec__text .t-case-body { width: calc(720 * var(--u)); }
+.case-next { padding-bottom: calc(10 * var(--u)); }
+
+/* pictures: 1560 × 878 full rows, 775 × 878 halves, 10 apart; grey until decoded, then a soft fade (no movement) */
+.case-imgs { display: flex; flex-direction: column; gap: calc(10 * var(--u)); }
+.case-row { display: flex; gap: calc(10 * var(--u)); }
+.case-media { position: relative; margin: 0; aspect-ratio: 1560 / 878; border-radius: calc(10 * var(--u)); overflow: hidden; background: var(--bg-page); }
+/* video blocks: also clip-path (as .reel on the home page) — a video layer can ignore overflow+radius and show
+   dark hairlines along the edges */
+.case-media:has(video) { clip-path: inset(0 round calc(var(--radius-card) * var(--u))); isolation: isolate; }
+.case-media--half { flex: 1 1 0; min-width: 0; aspect-ratio: 775 / 878; }
+/* «next case»: label and title as before, then the case's own cover (live P2C / Art Glück video, as on the home page) */
+.case-next { display: block; }
+/* the end of the case: a thin line and double the usual gap before it; label, title and cover read as one card (her note) */
+.case-next .case-sec__head { padding-bottom: calc(30 * var(--u)); }
+.case-next::before { content: ""; display: block; height: 1px; margin: 0 calc(20 * var(--u)) calc(160 * var(--u)); background: var(--bg-subtle); }
+.case-next__media { position: relative; aspect-ratio: 1560 / 878; border-radius: calc(10 * var(--u)); overflow: hidden; isolation: isolate; }
+.case-next__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.case-next__media .p2cc { position: absolute; inset: 0; aspect-ratio: auto; }
+.case-next__media > * { transition: transform 300ms ease; }
+.case-next .p2cc img { transition: none; }
+@media (hover: hover) and (pointer: fine) { .case-next:hover .case-next__media > * { transform: scale(1.03); } }
+.case-media img, .case-media video { width: 100%; height: 100%; object-fit: cover; }
+.case-media img { transition: opacity 500ms var(--ease-out, ease); }
+.case-media img.is-pending { opacity: 0; }
+
+/* ── phone (Case Art Glück — Mobile 390) ────────────────────────────── */
+@media (max-width: 899px) {
+  .case-nav { display: none; }
+  .case-layout { display: block; margin: calc(43 * var(--u)) calc(-7 * var(--u)) 0; }
+  .case-panel { width: auto; border-radius: calc(4 * var(--u)) calc(4 * var(--u)) 0 0; padding: calc(14 * var(--u)) calc(7 * var(--u)) calc(7 * var(--u)); }
+  .footer--case { margin-top: 0; padding: calc(43 * var(--u)) 0 calc(23 * var(--u)); }
+
+  .case-intro { padding: 0 0 calc(43 * var(--u)); display: flex; flex-direction: column; gap: calc(29 * var(--u)); }
+  .case-intro__copy { width: auto; margin: 0; gap: calc(14 * var(--u)); }
+  .case-intro__title-row { display: flex; align-items: center; justify-content: space-between; gap: calc(14 * var(--u)); }
+  /* phone: a plain grey text link «Visit site», no pill, no icon (her choice, 2026-10-27); the padding keeps the tap area */
+  .case-visit { position: static; padding: calc(8 * var(--u)) 0; background: none; color: var(--text-secondary-aa); }
+  .case-visit img { display: none; }
+  .case-meta { margin: 0; height: auto; flex-wrap: wrap; gap: calc(7 * var(--u)) calc(14 * var(--u)); }
+  .case-meta > div { width: calc(167 * var(--u)); gap: calc(2 * var(--u)); }
+  .case-meta dd { color: var(--text-secondary-aa); }
+  .case-intro .case-hero { margin: 0; }
+
+  .case-sec { padding: 0 0 calc(43 * var(--u)); }
+  .case-sec__head { flex-direction: column; gap: calc(14 * var(--u)); padding: 0 0 calc(29 * var(--u)); }
+  .case-sec__head--sub { padding-top: calc(58 * var(--u)); }   /* 29 gap + 29 Subheader top padding */
+  .case-sec__head--sub .case-sec__text { margin-left: 0; }
+  .case-sec__label { width: auto; padding: 0; color: var(--text-secondary-aa); }
+  .case-sec__label .sec-num { margin-right: 0.25em; }          /* «01 Problem» on the phone */
+  .case-sec__text, .case-sec__text .t-case-body { width: auto; }
+  .case-sec__text { gap: calc(14 * var(--u)); }
+  .case-next { padding-bottom: 0; }
+  .case-next .case-sec__head { gap: calc(14 * var(--u)); padding-bottom: calc(14 * var(--u)); }
+  .case-next::before { margin: 0 0 calc(43 * var(--u)); }   /* 43 above the line (the section's own) + 43 below = 86 */
+
+  .case-imgs, .case-row { gap: calc(4 * var(--u)); }
+  .case-media { border-radius: calc(4 * var(--u)); }
+}
+
+/* case navigation clicks glide to the section */
+@media (prefers-reduced-motion: no-preference) and (max-width: 899px) { html:has(.case-page) { scroll-behavior: smooth; } }

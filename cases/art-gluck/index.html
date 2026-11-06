@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Система бренда Art Glück — Саша Бурунтарова</title>
+<meta name="description" content="Кейс: как я собрала разрозненный визуал онлайн-школы Art Glück в единую систему — от логотипа до рекламного баннера.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+<!-- first frame of the cover video is on screen at once (same files as the card on the home page → already cached) -->
+<link rel="preload" as="image" href="../../assets/video/cover-artgluck.jpg">
+<link rel="stylesheet" href="../../css/styles.css">
+<link rel="stylesheet" href="../../css/contact.css">
+<link rel="stylesheet" href="../../css/up-btn.css">
+<link rel="stylesheet" href="../../css/case.css">
+<link rel="stylesheet" href="../../css/p2c-cover.css">
+<link rel="stylesheet" href="../../css/motion.css">
+<link rel="stylesheet" href="../../css/case-ag.css">
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("case-enter");setTimeout(function(){document.documentElement.classList.remove("case-enter")},3000)}</script>
+<script>(function(){var d=document.documentElement;var w0;function cw(){var w=d.clientWidth;if(w!==w0){w0=w;d.style.setProperty("--cw",w+"px")}}cw();addEventListener("resize",cw);addEventListener("DOMContentLoaded",function(){cw();if(window.ResizeObserver)new ResizeObserver(cw).observe(document.body)});addEventListener("pagereveal",function(e){if(e.viewTransition)d.classList.add("vt-in")})})();</script>
+</head>
+<body>
+<div class="page case-page">
+
+  <header class="header case-top">
+    <div class="header__left">
+      <a href="../../index.html" class="header__logo" aria-label="На главную">
+        <svg viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="13.5" fill="none" stroke="#121212" stroke-width="5"/></svg>
+      </a>
+      <nav class="header__links" aria-label="Разделы">
+        <a class="pill t-label" href="../../index.html#work">Cases</a>
+        <a class="pill t-label" href="../../index.html#about">About</a>
+      </nav>
+    </div>
+    <p class="header__name t-label">Sasha Buruntarova</p>
+    <div class="header__right">
+      <div class="lang t-label" role="group" aria-label="Язык">
+        <button class="lang__opt" type="button" aria-pressed="true">RU</button>
+        <button class="lang__opt" type="button" aria-pressed="false" data-href="en.html" lang="en">EN</button>
+      </div>
+      <a class="pill pill--contact t-label" href="mailto:sburuntarova@gmail.com">Contact</a>
+      <a class="icon-btn" href="mailto:sburuntarova@gmail.com" aria-label="Написать на почту">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.17 4.17h11.66c.92 0 1.67.74 1.67 1.66v8.34c0 .92-.75 1.66-1.67 1.66H4.17c-.92 0-1.67-.74-1.67-1.66V5.83c0-.92.75-1.66 1.67-1.66Z" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 5.83 10 10.83l7.5-5" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <div class="case-layout">
+
+    <!-- case navigation (desktop): all cases, the current one opened to its sections; dot = section on screen -->
+    <aside class="case-nav" aria-label="Навигация по кейсам">
+      <div class="case-nav__case is-current">
+        <p class="t-label" style="--i:0">Art Glück</p>
+        <p class="t-small muted" style="--i:1">Ребрендинг · 2023–2026</p>
+        <div class="case-nav__track">
+        <img class="case-nav__dot" src="../../assets/icons/case-dot.svg" width="4" height="4" alt="">
+        <ol class="case-nav__sections">
+          <li style="--i:2"><a href="#problem" class="is-active"><span class="case-nav__name"><span class="sec-num">01</span>Problem</span></a></li>
+          <li style="--i:3"><a href="#direction"><span class="case-nav__name"><span class="sec-num">02</span>Direction</span></a></li>
+          <li style="--i:4"><a href="#identity"><span class="case-nav__name"><span class="sec-num">03</span>Identity</span></a></li>
+          <li style="--i:5"><a href="#website"><span class="case-nav__name"><span class="sec-num">04</span>Website</span></a></li>
+          <li style="--i:6"><a href="#merch"><span class="case-nav__name"><span class="sec-num">05</span>Merch</span></a></li>
+          <li style="--i:7"><a href="#solution"><span class="case-nav__name"><span class="sec-num">06</span>Solution</span></a></li>
+          <li style="--i:8"><a href="#results"><span class="case-nav__name"><span class="sec-num">07</span>Results</span></a></li>
+        </ol>
+        </div>
+      </div>
+      <a class="case-nav__link t-label" style="--i:9" href="../project-to-case/index.html">Project → Case</a>
+    </aside>
+
+    <main class="case-panel" tabindex="-1">
+
+      <!-- intro -->
+      <section class="case-intro" aria-labelledby="case-title">
+        <div class="case-intro__copy">
+          <div class="case-intro__title-row">
+            <h1 class="t-case-title" id="case-title">Система бренда Art Glück</h1>
+            <a class="pill pill--subtle case-visit t-label" href="https://artgluck.ru" target="_blank" rel="noopener"><img src="../../assets/icons/link.svg" width="20" height="20" alt="">Visit site</a>
+          </div>
+          <p class="t-lead">Как я собрала разрозненный визуал школы в <span class="hl">единую систему</span> — от логотипа до рекламного баннера.</p>
+        </div>
+        <dl class="case-meta">
+          <div><dt class="t-label-l">Role</dt><dd class="t-meta">Lead Designer<br>Art Director</dd></div>
+          <div><dt class="t-label-l">Scope</dt><dd class="t-meta">Brand Strategy<br>Design System<br>Team Leadership<br>Rollout Guidelines</dd></div>
+          <div><dt class="t-label-l">Tools</dt><dd class="t-meta">Figma<br>Photoshop<br>Claude Code<br>Nano Banana</dd></div>
+          <div><dt class="t-label-l">Year</dt><dd class="t-meta">2023–2026</dd></div>
+        </dl>
+        <div class="case-media case-hero">
+          <video data-autoplay muted loop playsinline preload="auto" poster="../../assets/video/cover-artgluck.jpg"
+                 data-src-desktop="../../assets/video/cover-artgluck" data-src-mobile="../../assets/video/cover-artgluck-m"
+                 aria-label="Обложка кейса: логотип Art Glück в виде рабочего чертежа"></video>
+        </div>
+      </section>
+
+      <!-- 01 -->
+      <section class="case-sec" id="problem" aria-labelledby="problem-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">01</span>Problem</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="problem-h">Каждое направление обучения жило по своим визуальным правилам.</h2>
+            <p class="t-case-body">Art Glück — онлайн-школа дизайна интерьера и архитектуры с 6 направлениями обучения и 15+ инструментами. Визуал строился на ярких иллюстрациях, и каждое направление годами обрастало своим цветом и стилем — с ростом школы держать бренд узнаваемым становилось всё сложнее.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <figure class="case-media"><img src="../../assets/cases/art-gluck/01-problem-1600.webp" srcset="../../assets/cases/art-gluck/01-problem-800.webp 800w, ../../assets/cases/art-gluck/01-problem-1600.webp 1600w, ../../assets/cases/art-gluck/01-problem-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 82vw" alt="Обложки курсов до ребрендинга: у каждого направления свой цвет и иллюстрация" loading="lazy" decoding="async"></figure>
+        </div>
+      </section>
+
+      <!-- 02 -->
+      <section class="case-sec" id="direction" aria-labelledby="direction-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">02</span>Direction</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="direction-h">Иллюстрации отвлекали от главного — работ студентов.</h2>
+            <p class="t-case-body">Работы студентов сами по себе сильная картинка, а яркий иллюстративный стиль с ними конкурировал.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="case-row">
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/02-direction-a-1550.webp" srcset="../../assets/cases/art-gluck/02-direction-a-800.webp 800w, ../../assets/cases/art-gluck/02-direction-a-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Промо курса по Twinmotion на экране телефона" loading="lazy" decoding="async"></figure>
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/02-direction-b-1550.webp" srcset="../../assets/cases/art-gluck/02-direction-b-800.webp 800w, ../../assets/cases/art-gluck/02-direction-b-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Каталог направлений на планшете" loading="lazy" decoding="async"></figure>
+          </div>
+        </div>
+        <div class="case-sec__head case-sec__head--sub">
+          <div class="case-sec__text">
+            <h3 class="t-case-heading">Поэтому решение было не «нарисовать новую иллюстрацию покрасивее», а убрать лишний визуальный шум вообще.</h3>
+            <p class="t-case-body">Я выбрала нейтральную систему: сдержанную пастельную палитру и минималистичные 3D-иконки вместо разномастных иллюстраций под каждое направление. Такой подход не спорит с работами студентов, а обрамляет их — визуал школы стал фоном для результата, а не отдельным высказыванием.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="case-media">
+            <video data-autoplay muted loop playsinline preload="none" poster="../../assets/video/students-artgluck.jpg"
+                   data-src-desktop="../../assets/video/students-artgluck" data-src-mobile="../../assets/video/students-artgluck-m"
+                   aria-label="Работы студентов сменяют друг друга: интерьер на весь экран и карточка выпускника"></video>
+          </div>
+          <div class="case-row">
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/02-direction-d-1550.webp" srcset="../../assets/cases/art-gluck/02-direction-d-800.webp 800w, ../../assets/cases/art-gluck/02-direction-d-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Альбом с чертежами планировки" loading="lazy" decoding="async"></figure>
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/02-direction-e-1550.webp" srcset="../../assets/cases/art-gluck/02-direction-e-800.webp 800w, ../../assets/cases/art-gluck/02-direction-e-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Книга-портфолио выпускника" loading="lazy" decoding="async"></figure>
+          </div>
+          <figure class="case-media"><img src="../../assets/cases/art-gluck/02-direction-f-1600.webp" srcset="../../assets/cases/art-gluck/02-direction-f-800.webp 800w, ../../assets/cases/art-gluck/02-direction-f-1600.webp 1600w, ../../assets/cases/art-gluck/02-direction-f-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 82vw" alt="Разворот альбома с планировками и развёртками" loading="lazy" decoding="async"></figure>
+        </div>
+      </section>
+
+      <!-- 03 -->
+      <section class="case-sec" id="identity" aria-labelledby="identity-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">03</span>Identity</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="identity-h">Лого и палитра, которые работают в любом контексте.</h2>
+            <p class="t-case-body">Четыре контрастных варианта лого — на светлом, тёмном, цветном фоне и поверх фото. Палитра на нейтральной основе с пастельными акцентами и синим как единственным ярким цветом для графики.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="case-media">
+            <video data-autoplay muted loop playsinline preload="none" poster="../../assets/video/identity-artgluck.jpg"
+                   data-src-desktop="../../assets/video/identity-artgluck" data-src-mobile="../../assets/video/identity-artgluck-m"
+                   aria-label="Логотип до и после: «ART GLÜCK» перетекает в «art glück»"></video>
+          </div>
+          <div class="case-row">
+            <div class="case-media case-media--half">
+            <video data-autoplay muted loop playsinline preload="none" poster="../../assets/video/palette-artgluck.jpg"
+                   data-src-desktop="../../assets/video/palette-artgluck" data-src-mobile="../../assets/video/palette-artgluck-m"
+                   aria-label="Палитра бренда: плашки цветов перестраиваются в реальные пропорции"></video>
+          </div>
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/03-identity-type-1550.webp" srcset="../../assets/cases/art-gluck/03-identity-type-800.webp 800w, ../../assets/cases/art-gluck/03-identity-type-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Шрифт Manrope: начертания, алфавит и шкала размеров" loading="lazy" decoding="async"></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 -->
+      <section class="case-sec" id="website" aria-labelledby="website-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">04</span>Website</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="website-h">С командой пересобрали сайт под новую структуру и систему.</h2>
+            <p class="t-case-body">Разработала новую структуру сайта под 6 направлений и внедрила систему бренда в вёрстку вместе с разработчиком.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <figure class="case-media"><img src="../../assets/cases/art-gluck/04-website-1b-1600.webp" srcset="../../assets/cases/art-gluck/04-website-1b-800.webp 800w, ../../assets/cases/art-gluck/04-website-1b-1600.webp 1600w, ../../assets/cases/art-gluck/04-website-1b-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 82vw" alt="Страницы и креативы нового сайта Art Glück" loading="lazy" decoding="async"></figure>
+          <div class="case-media">
+            <video data-autoplay muted loop playsinline preload="none" poster="../../assets/video/carousel-artgluck.jpg"
+                   data-src-desktop="../../assets/video/carousel-artgluck" data-src-mobile="../../assets/video/carousel-artgluck-m"
+                   aria-label="Каталог курсов: карточки листаются по клику на стрелку"></video>
+          </div>
+          <div class="case-row">
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/04-website-3a-1550.webp" srcset="../../assets/cases/art-gluck/04-website-3a-800.webp 800w, ../../assets/cases/art-gluck/04-website-3a-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Страница преподавателя на планшете" loading="lazy" decoding="async"></figure>
+            <figure class="case-media case-media--half ag-phone"><img src="../../assets/cases/art-gluck/04-website-3b-1550.webp" srcset="../../assets/cases/art-gluck/04-website-3b-800.webp 800w, ../../assets/cases/art-gluck/04-website-3b-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Мобильная версия каталога курсов" loading="lazy" decoding="async"><div class="ag-phone__screen" aria-hidden="true"><img class="ag-phone__page" src="../../assets/cases/art-gluck/04-catalog-page.webp" alt="" loading="lazy" decoding="async"><img class="ag-phone__header" src="../../assets/cases/art-gluck/04-catalog-header.webp" alt="" loading="lazy" decoding="async"></div></figure>
+          </div>
+        </div>
+        <div class="case-sec__head case-sec__head--sub">
+          <div class="case-sec__text">
+            <p class="t-case-body">Школа постоянно запускает новые курсы, и делать под каждый уникальную страницу — неустойчиво. Поэтому вместо разовой вёрстки мы разработали типовой шаблон лендинга: новый курс собирается заменой контента, а не пересборкой макета.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="case-row">
+            <figure class="case-media case-media--half ag-page"><img src="../../assets/cases/art-gluck/04-website-4a-1550.webp" srcset="../../assets/cases/art-gluck/04-website-4a-800.webp 800w, ../../assets/cases/art-gluck/04-website-4a-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Лендинг курса по InDesign" loading="lazy" decoding="async"><div class="ag-page__screen" aria-hidden="true"><img src="../../assets/cases/art-gluck/04-indesign-page.webp" alt="" loading="lazy" decoding="async"></div></figure>
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/04-website-4b-1550.webp" srcset="../../assets/cases/art-gluck/04-website-4b-800.webp 800w, ../../assets/cases/art-gluck/04-website-4b-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Программа мини-курса «Создание атмосферного ресторана в 3Ds Max»" loading="lazy" decoding="async"></figure>
+          </div>
+          <figure class="case-media ag-events"><img src="../../assets/cases/art-gluck/04-website-5-1600.webp" srcset="../../assets/cases/art-gluck/04-website-5-800.webp 800w, ../../assets/cases/art-gluck/04-website-5-1600.webp 1600w, ../../assets/cases/art-gluck/04-website-5-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 82vw" alt="Первый экран акции «Back To School»" loading="lazy" decoding="async"><div class="ag-events__screen"><img src="../../assets/cases/art-gluck/04-event-47.webp" alt="Первый экран акции «Back to School»" loading="lazy" decoding="async" class="is-on"><img src="../../assets/cases/art-gluck/04-event-48.webp" alt="Первый экран акции «Мир. Труд. Май.»" loading="lazy" decoding="async"><img src="../../assets/cases/art-gluck/04-event-53.webp" alt="Первый экран акции «Мир. Труд. Май.»" loading="lazy" decoding="async"><div class="ag-events__bar" aria-hidden="true"><i class="is-on"></i><i></i><i></i><span class="ag-events__cap" data-caps="Back to School · 29–31 августа|Мир. Труд. Май. · 1–12 мая|Мир. Труд. Май. · 1–11 мая">Back to School · 29–31 августа</span></div></div></figure>
+          <div class="case-row">
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/04-website-6a-1550.webp" srcset="../../assets/cases/art-gluck/04-website-6a-800.webp 800w, ../../assets/cases/art-gluck/04-website-6a-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Мобильная страница курса с отзывом" loading="lazy" decoding="async"></figure>
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/04-website-6b-1550.webp" srcset="../../assets/cases/art-gluck/04-website-6b-800.webp 800w, ../../assets/cases/art-gluck/04-website-6b-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Мобильная страница курса с карточками" loading="lazy" decoding="async"></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 -->
+      <section class="case-sec" id="merch" aria-labelledby="merch-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">05</span>Merch</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="merch-h">Мерч, который хочется носить, а не прятать в шкаф.</h2>
+            <p class="t-case-body">Перенесла систему бренда на носители: шопперы, бейджи, кепки, футболки и стикеры. Логотип и пастельная палитра работают и на ткани, и на пластике — бренд узнаётся вне экрана.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <figure class="case-media"><img src="../../assets/cases/art-gluck/05-merch-1-1600.webp" srcset="../../assets/cases/art-gluck/05-merch-1-800.webp 800w, ../../assets/cases/art-gluck/05-merch-1-1600.webp 1600w, ../../assets/cases/art-gluck/05-merch-1-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 82vw" alt="Стикеры Art Glück на чехле телефона в кармане рубашки" loading="lazy" decoding="async"></figure>
+          <div class="case-row">
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/05-merch-2a-1550.webp" srcset="../../assets/cases/art-gluck/05-merch-2a-800.webp 800w, ../../assets/cases/art-gluck/05-merch-2a-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Бейдж эксперта на ленте с логотипом" loading="lazy" decoding="async"></figure>
+            <figure class="case-media case-media--half"><img src="../../assets/cases/art-gluck/05-merch-2b-1550.webp" srcset="../../assets/cases/art-gluck/05-merch-2b-800.webp 800w, ../../assets/cases/art-gluck/05-merch-2b-1550.webp 1550w" sizes="(max-width: 899px) 50vw, 41vw" alt="Стикеры на ноутбуке" loading="lazy" decoding="async"></figure>
+          </div>
+          <figure class="case-media"><img src="../../assets/cases/art-gluck/05-merch-3-1600.webp" srcset="../../assets/cases/art-gluck/05-merch-3-800.webp 800w, ../../assets/cases/art-gluck/05-merch-3-1600.webp 1600w, ../../assets/cases/art-gluck/05-merch-3-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 82vw" alt="Футболка с принтом «Живу в масштабе 1:100»" loading="lazy" decoding="async"></figure>
+        </div>
+      </section>
+
+      <!-- 06 -->
+      <section class="case-sec" id="solution" aria-labelledby="solution-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">06</span>Solution</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="solution-h">Система целиком — от лого до рекламного баннера.</h2>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="case-media">
+            <video data-autoplay muted loop playsinline preload="none" poster="../../assets/video/brandbook-artgluck.jpg"
+                   data-src-desktop="../../assets/video/brandbook-artgluck" data-src-mobile="../../assets/video/brandbook-artgluck-m"
+                   aria-label="Страницы брендбука: шрифты, иконки, раскладки, палитра"></video>
+          </div>
+          <figure class="case-media"><img src="../../assets/cases/art-gluck/06-solution-2-1600.webp" srcset="../../assets/cases/art-gluck/06-solution-2-800.webp 800w, ../../assets/cases/art-gluck/06-solution-2-1600.webp 1600w, ../../assets/cases/art-gluck/06-solution-2-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 82vw" alt="Сторис в новой системе бренда" loading="lazy" decoding="async"></figure>
+          <div class="case-media">
+            <video data-autoplay muted loop playsinline preload="none" poster="../../assets/video/collage-artgluck.jpg"
+                   data-src-desktop="../../assets/video/collage-artgluck" data-src-mobile="../../assets/video/collage-artgluck-m"
+                   aria-label="Стена работ школы: колонки едут навстречу друг другу"></video>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 -->
+      <section class="case-sec" id="results" aria-labelledby="results-h">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l"><span class="sec-num">07</span>Results</p>
+          <div class="case-sec__text">
+            <h2 class="t-case-heading" id="results-h">Единая система сделала бренд узнаваемым на всех каналах.</h2>
+            <p class="t-case-body">Сет из ~25 рекламных креативов, который раньше собирался вручную 2–3 дня, теперь занимает около 6 часов. Но главное — независимость команды: дизайнеры решают задачи по брендбуку, без согласования каждого шага.</p>
+          </div>
+        </div>
+        <div class="case-imgs">
+          <div class="case-media">
+            <video data-autoplay muted loop playsinline preload="none" poster="../../assets/video/people-artgluck.jpg"
+                   data-src-desktop="../../assets/video/people-artgluck" data-src-mobile="../../assets/video/people-artgluck-m"
+                   aria-label="Преподаватели школы: колонки фото и карточка «Присоединяйся к сообществу профессионалов»"></video>
+          </div>
+        </div>
+      </section>
+
+      <!-- next case -->
+      <a class="case-sec case-next" href="../project-to-case/index.html" aria-label="Следующий кейс: Project → Case">
+        <div class="case-sec__head">
+          <p class="case-sec__label t-label-l">Следующий кейс</p>
+          <div class="case-sec__text">
+            <p class="t-lead">Project → Case</p>
+          </div>
+        </div>
+        <div class="case-next__media"><div class="p2cc" data-base="../../assets/cases/p2c/" role="img" aria-label="Обложка кейса Project → Case"></div></div>
+      </a>
+
+      <footer class="footer footer--case"><p class="footer__copy t-card-body">Саша Бурунтарова © 2026</p><a class="footer__up up-btn" href="#" aria-label="Наверх"><span class="up-btn__track"><svg class="up-btn__i" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 16V4M4.5 9.5 10 4l5.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="up-btn__i" viewBox="0 0 20 20" fill="none" aria-hidden="true"><defs><linearGradient id="up-grad" x1="4" y1="16" x2="16" y2="4" gradientUnits="userSpaceOnUse"><stop stop-color="#F2A58E"/><stop offset=".25" stop-color="#EFA94A"/><stop offset=".5" stop-color="#E79AB4"/><stop offset=".75" stop-color="#7FB8EC"/><stop offset="1" stop-color="#9C97EA"/></linearGradient></defs><path d="M10 16V4M4.5 9.5 10 4l5.5 5.5" stroke="url(#up-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></footer>
+    </main>
+  </div>
+
+</div>
+<script src="../../js/main.js" defer></script>
+<script src="../../js/contact.js" defer></script>
+<script src="../../js/up-btn.js" defer></script>
+<script src="../../js/p2c-cover.js" defer></script>
+<script src="../../js/case.js" defer></script>
+<script src="../../js/motion.js" defer></script>
+<script src="../../js/case-ag.js" defer></script>
+</body>
+</html>

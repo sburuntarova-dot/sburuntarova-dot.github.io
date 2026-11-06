@@ -1,0 +1,9 @@
+/* «Открыть кейс» label that rides with the cursor over a case cover (js/case-cursor.js) */
+.ccur { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; white-space: nowrap;
+  padding: calc(var(--pill-py) * var(--u)) calc(var(--pill-px) * var(--u)); border-radius: calc(var(--radius-control) * var(--u));
+  background: var(--bg-surface); color: var(--text-primary); box-shadow: 0 calc(6 * var(--u)) calc(20 * var(--u)) rgb(0 0 0 / .12);
+  transform: translate(-50%, calc(-100% - 12 * var(--u))) scale(.6); transform-origin: 50% 100%; opacity: 0;
+  transition: transform 220ms cubic-bezier(.23, 1, .32, 1), opacity 160ms ease; }
+.ccur.is-on { opacity: 1; transform: translate(-50%, calc(-100% - 12 * var(--u))); }
+.case-card:has(.ccur.is-on) .case-card__media { cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .ccur { transition: opacity 160ms ease; } }

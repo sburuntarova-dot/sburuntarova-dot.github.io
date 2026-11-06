@@ -1,0 +1,102 @@
+/* Contact card stack (her ref: the contact menu at oimachi.co) — opens from Contact / the mail icon / Contact me.
+   Desktop: white cards under (or over) the button, right edges aligned; phone: the same cards as a bottom sheet. */
+/* Motion (her «давай пробуем», 2026-11-04; animate + Emil's rules): occasional → a standard popover animation whose job is
+   spatial — the stack unfolds out of the button's corner and folds back into it (transform-origin = the button, set by
+   contact.js). Open: the stack 0.96 → 1 + fade, 200 ms strong ease-out, the cards follow 40 ms apart from 6 px off.
+   Close: faster (150 ms), all at once, no stagger. Transitions only, so open/close mid-way just turns around. */
+.cpop { position: fixed; z-index: 100; width: calc(500 * var(--u)); display: flex; flex-direction: column; gap: calc(4 * var(--u));
+  visibility: hidden; opacity: 0; transform: scale(.96); transform-origin: 100% 0;
+  transition: opacity 150ms cubic-bezier(.23, 1, .32, 1), transform 150ms cubic-bezier(.23, 1, .32, 1), visibility 0s 150ms; }
+.cpop.is-open { visibility: visible; opacity: 1; transform: none;
+  transition: opacity 200ms cubic-bezier(.23, 1, .32, 1), transform 200ms cubic-bezier(.23, 1, .32, 1), visibility 0s; }
+.cpop__card { display: block; position: relative; padding: calc(12 * var(--u)); border-radius: calc(var(--radius-card) * var(--u)); background: var(--bg-surface);
+  color: var(--text-primary); box-shadow: 0 calc(10 * var(--u)) calc(30 * var(--u)) rgb(0 0 0 / 0.08);
+  opacity: 0; transform: translateY(calc(-6 * var(--u))); transition: opacity 150ms cubic-bezier(.23, 1, .32, 1), transform 150ms cubic-bezier(.23, 1, .32, 1); }
+.cpop.is-up .cpop__card { transform: translateY(calc(6 * var(--u))); }
+.cpop.is-open .cpop__card { opacity: 1; transform: none; transition-duration: 200ms; transition-delay: calc(var(--i) * 40ms); }
+.cpop.is-up.is-open .cpop__card { transition-delay: calc((2 - var(--i)) * 40ms); }   /* opening upward: the card nearest the button first */
+/* the header Contact pill reads «on» while its stack is open */
+.pill--contact { transition: background-color 160ms ease, color 160ms ease; }
+.pill--contact[aria-expanded="true"] { background: var(--action-primary); color: var(--action-on-primary); }
+.cpop__arrow { position: absolute; top: calc(12 * var(--u)); right: calc(12 * var(--u)); width: calc(24 * var(--u)); height: calc(24 * var(--u)); display: grid; place-items: center;
+  border-radius: calc(4 * var(--u)); background: var(--bg-tag); transition: background 160ms ease; }
+.cpop__arrow svg { width: calc(12 * var(--u)); height: calc(12 * var(--u)); transition: transform 160ms cubic-bezier(.23, 1, .32, 1); }
+
+/* 1 — who: photo, name, open to a new role → Telegram */
+.cpop__me { display: flex; align-items: center; gap: calc(16 * var(--u)); }
+.cpop__me img { width: calc(80 * var(--u)); height: calc(80 * var(--u)); border-radius: calc(var(--radius-control) * var(--u)); object-fit: cover; flex: none; background: var(--bg-subtle); }
+.cpop__name { display: block; font-weight: 500; font-size: calc(20 * var(--u)); line-height: calc(26 * var(--u)); letter-spacing: calc(-0.6 * var(--u)); }
+.cpop__status { display: flex; align-items: center; gap: calc(6 * var(--u)); margin-top: calc(4 * var(--u)); color: var(--text-secondary-aa); }
+/* «online» ring off the green dot — the only looping motion, and it runs only while the stack is open */
+.cpop__status .pill__dot { position: relative; }
+.cpop__status .pill__dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid #21c754; opacity: 0;
+  animation: cpop-ping 2.4s cubic-bezier(.23, 1, .32, 1) infinite paused; }
+.cpop.is-open .cpop__status .pill__dot::after { animation-play-state: running; }
+@keyframes cpop-ping { 0% { transform: scale(1); opacity: .7; } 60%, 100% { transform: scale(2.6); opacity: 0; } }
+
+/* 2 — copy rows: mail and Telegram */
+.cpop__copy { display: flex; flex-wrap: wrap; align-items: center; gap: calc(14 * var(--u)) calc(24 * var(--u)); padding: calc(24 * var(--u)) calc(12 * var(--u)); }   /* taller: the main way to reach her */
+.cpop__row { display: flex; align-items: center; gap: calc(8 * var(--u)); min-width: 0; padding: 0; border: 0; background: none; font-family: inherit; font-weight: 400; color: inherit;
+  font-size: calc(20 * var(--u)); line-height: calc(26 * var(--u)); letter-spacing: calc(-0.6 * var(--u));   /* bigger than the labels below — her choice */ text-align: left; cursor: pointer; }
+.cpop__ic { width: calc(20 * var(--u)); height: calc(20 * var(--u)); flex: none; color: var(--text-primary); }
+/* copied (her ask: «Copied!» as at oimachi.co): the address rolls up and out, «Copied!» rolls in from below, the copy
+   icon turns into a check. The gradient was tried and dropped («только мешает»). Transitions only,
+   so a second click mid-way retargets. */
+.cpop__txt { display: inline-grid; overflow: hidden; min-width: 0; }
+.cpop__addr, .cpop__done { grid-area: 1 / 1; white-space: nowrap; transition: transform 260ms cubic-bezier(.23, 1, .32, 1), opacity 200ms ease; }
+.cpop__addr { overflow: hidden; text-overflow: ellipsis; }
+.cpop__done { transform: translateY(100%); opacity: 0; }
+.cpop__row.is-done .cpop__addr { transform: translateY(-100%); opacity: 0; }
+.cpop__row.is-done .cpop__done { transform: none; opacity: 1; }
+.cpop__ico { display: grid; flex: none; width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+.cpop__ico > svg { grid-area: 1 / 1; width: 100%; height: 100%; transition: transform 200ms cubic-bezier(.23, 1, .32, 1), opacity 160ms ease; }
+.cpop__cp { color: var(--text-muted); transition: color 160ms ease, transform 200ms cubic-bezier(.23, 1, .32, 1), opacity 160ms ease; }
+.cpop__ok { color: var(--text-primary); opacity: 0; transform: scale(.6); }
+.cpop__row.is-done .cpop__cp { opacity: 0; transform: scale(.6); }
+.cpop__row.is-done .cpop__ok { opacity: 1; transform: none; }
+.cpop__row:active { transform: scale(.97); }
+.cpop__row { transition: transform 160ms ease-out; }
+.cpop__sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (prefers-reduced-motion: reduce) {
+  .cpop__addr, .cpop__done { transform: none !important; }
+}
+
+/* 3 — links: LinkedIn, CV */
+.cpop__links { display: flex; flex-direction: column; padding: 0; }
+.cpop__link { position: relative; display: flex; align-items: center; justify-content: space-between; padding: calc(12 * var(--u)); }
+.cpop__link + .cpop__link { border-top: 1px solid var(--bg-subtle); }
+.cpop__link .cpop__arrow { position: static; }
+.cpop__lbl { display: flex; align-items: center; gap: calc(8 * var(--u)); }
+
+@media (hover: hover) and (pointer: fine) {
+  a.cpop__card:hover .cpop__arrow, .cpop__link:hover .cpop__arrow { background: var(--bg-subtle); }
+  .cpop__link:hover .cpop__arrow svg { transform: translate(calc(1.5 * var(--u)), calc(-1.5 * var(--u))); }
+  .cpop__row:hover .cpop__cp { color: var(--text-primary); }
+}
+.cpop__row:focus-visible, .cpop a:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; border-radius: calc(4 * var(--u)); }
+
+/* phone: a bottom sheet over a light veil — the whole sheet rises from below the screen on the iOS drawer curve (300 ms),
+   leaves the same way (200 ms), and can be flicked down (contact.js) */
+.cpop-veil { position: fixed; inset: 0; z-index: 99; background: rgb(0 0 0 / 0.25); opacity: 0; visibility: hidden; transition: opacity 200ms ease, visibility 0s 200ms; }
+.cpop-veil.is-open { opacity: 1; visibility: visible; transition: opacity 250ms ease; }
+@media (min-width: 900px) { .cpop-veil { display: none; } }
+@media (max-width: 899px) {
+  .cpop { left: var(--g, calc(10 * var(--u))) !important; right: var(--g, calc(10 * var(--u))); top: auto !important; bottom: calc(10 * var(--u) + env(safe-area-inset-bottom)) !important; width: auto;
+    opacity: 1; transform: translateY(calc(100% + 10 * var(--u) + env(safe-area-inset-bottom))); touch-action: none;
+    transition: transform 200ms cubic-bezier(.32, .72, 0, 1), visibility 0s 200ms; }
+  .cpop.is-open { transform: none; transition: transform 300ms cubic-bezier(.32, .72, 0, 1), visibility 0s; }
+  .cpop .cpop__card, .cpop.is-up .cpop__card, .cpop.is-open .cpop__card { opacity: 1; transform: none; transition: none; }
+  .cpop.is-dragging { transition: none; }
+  .cpop__me img { width: calc(64 * var(--u)); height: calc(64 * var(--u)); }
+  .cpop__copy { flex-direction: column; align-items: flex-start; }
+}
+/* reduced motion: fewer and gentler — the stack only fades, nothing moves, no ring */
+@media (prefers-reduced-motion: reduce) {
+  .cpop, .cpop.is-open, .cpop .cpop__card, .cpop.is-open .cpop__card { transform: none !important; }
+  .cpop .cpop__card { transition: opacity 150ms ease; transition-delay: 0ms !important; }
+  .cpop__status .pill__dot::after { display: none; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 899px) {
+  .cpop { opacity: 0; transition: opacity 150ms ease, visibility 0s 150ms; }
+  .cpop.is-open { opacity: 1; transition: opacity 200ms ease, visibility 0s; }
+}

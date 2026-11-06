@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Портфолио с анимацией</title>
+<meta name="description" content="Портфолио Саши Бурунтаровой: брендинг, digital и продуктовый дизайн.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/video/showreel.jpg" media="(min-width: 900px)">
+<link rel="preload" as="image" href="assets/video/showreel-sq.jpg" media="(max-width: 899px)">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/contact.css">
+<link rel="stylesheet" href="css/up-btn.css">
+<link rel="stylesheet" href="css/contact-row.css">
+<link rel="stylesheet" href="css/case-cursor.css">
+<link rel="stylesheet" href="css/p2c-cover.css">
+<link rel="stylesheet" href="css/motion.css">
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("wave-pending");setTimeout(function(){document.documentElement.classList.remove("wave-pending")},3000)}</script>
+<script>(function(){var d=document.documentElement;var w0;function cw(){var w=d.clientWidth;if(w!==w0){w0=w;d.style.setProperty("--cw",w+"px")}}cw();addEventListener("resize",cw);addEventListener("DOMContentLoaded",function(){cw();if(window.ResizeObserver)new ResizeObserver(cw).observe(document.body)});addEventListener("pagereveal",function(e){if(e.viewTransition)d.classList.add("vt-in")})})();</script>
+</head>
+<body>
+<div class="page">
+
+  <!-- 00 — first screen (100svh) -->
+  <section class="first" aria-label="Первый экран">
+    <header class="header">
+      <div class="header__left">
+        <a href="#top" class="header__logo" aria-label="На главную">
+          <svg viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true"><circle cx="16" cy="16" r="13.5" fill="none" stroke="#121212" stroke-width="5"/></svg>
+        </a>
+        <nav class="header__links" aria-label="Разделы">
+          <a class="pill t-label" href="#work">Cases</a>
+          <a class="pill t-label" href="#about">About</a>
+        </nav>
+      </div>
+      <p class="header__name t-label">Sasha Buruntarova</p>
+      <div class="header__right">
+        <div class="lang t-label" role="group" aria-label="Язык">
+          <button class="lang__opt" type="button" aria-pressed="true">RU</button>
+          <button class="lang__opt" type="button" aria-pressed="false" data-href="en.html" lang="en">EN</button>
+        </div>
+        <a class="pill pill--contact t-label" href="mailto:sburuntarova@gmail.com">Contact</a>
+        <a class="icon-btn" href="mailto:sburuntarova@gmail.com" aria-label="Написать на почту">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.17 4.17h11.66c.92 0 1.67.74 1.67 1.66v8.34c0 .92-.75 1.66-1.67 1.66H4.17c-.92 0-1.67-.74-1.67-1.66V5.83c0-.92.75-1.66 1.67-1.66Z" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 5.83 10 10.83l7.5-5" stroke="#121212" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <div class="hero" id="top">
+      <h1 class="hero__title t-hero">
+        <span class="desk"><span class="line"><span style="--i:0">Меня зовут Саша.</span></span><span class="line"><span style="--i:1"><span class="hl">Я senior-дизайнер с 5+ годами</span></span></span><span class="line"><span style="--i:2">опыта в брендинге, digital и рекламе</span></span></span>
+        <span class="mob"><span class="line"><span style="--i:0">Я Саша, <span class="hl">senior-дизайнер.</span></span></span><span class="line"><span style="--i:1"><span class="hl">5+ лет</span> в брендинге,</span></span><span class="line"><span style="--i:2">digital и рекламе</span></span></span>
+      </h1>
+      <div class="hero__media">
+        <div class="reel">
+          <video data-autoplay muted loop playsinline preload="metadata" poster="assets/video/showreel.jpg"
+                 data-src-desktop="assets/video/showreel" data-src-mobile="assets/video/showreel-sq"
+                 data-poster-mobile="assets/video/showreel-sq.jpg" aria-label="Шоурил работ"></video><script>/* the showreel starts loading while the page is still being parsed, not after all the scripts */(function(v){var m=matchMedia("(max-width: 899px)").matches,b=m?v.dataset.srcMobile:v.dataset.srcDesktop;if(m)v.poster=v.dataset.posterMobile;v.innerHTML='<source src="'+b+'.mp4" type="video/mp4"><source src="'+b+'.webm" type="video/webm">';v.dataset.ready="1";v.preload="auto";v.muted=true;if(!matchMedia("(prefers-reduced-motion: reduce)").matches)v.play().catch(function(){})})(document.currentScript.previousElementSibling)</script>
+        </div>
+        <div class="intro">
+          <img src="assets/img/hero-portrait-960.webp" srcset="assets/img/hero-portrait-480.webp 480w, assets/img/hero-portrait-960.webp 960w" sizes="25vw" alt="Саша Бурунтарова" fetchpriority="high">
+          <div class="intro__scrim"></div>
+          <div class="intro__text">
+            <p class="t-name">Саша Бурунтарова</p>
+            <p class="intro__body t-intro-body">Работаю с айдентикой, сайтами<br>и продуктовыми интерфейсами. Выстраиваю структуру, определяю визуальное направление и довожу решения до запуска.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — selected work -->
+  <section class="work section" id="work" aria-labelledby="work-title">
+    <h2 class="work__title t-h1 wave-title" id="work-title"><span class="desk"><span class="hl">Избранные работы</span> — от бренд-системы до работающего цифрового продукта.</span><span class="mob"><span class="hl">Избранные работы</span> —<br>от бренд-системы<br>до работающего цифрового продукта.</span></h2>
+    <div class="work__grid">
+      <a class="case-card" href="cases/art-gluck/index.html" aria-label="Кейс: Система бренда Art Glück">
+        <div class="case-card__media">
+          <video data-autoplay muted loop playsinline preload="none" poster="assets/video/cover-artgluck.jpg"
+                 data-src-desktop="assets/video/cover-artgluck" data-src-mobile="assets/video/cover-artgluck-m"></video>
+        </div>
+        <h3 class="case-card__title t-card-title">Система бренда Art Glück / Ребрендинг</h3>
+        <p class="case-card__body t-card-body">Айдентика для онлайн-школы дизайна интерьера и архитектуры, которая выдержала 6 направлений обучения и 15+ инструментов</p>
+      </a>
+      <a class="case-card" href="cases/project-to-case/index.html" aria-label="Кейс: Project → Case">
+        <div class="case-card__media">
+          <div class="p2cc" data-base="assets/cases/p2c/" role="img" aria-label="Шаги конструктора по очереди: Материалы, О проекте, Идея, Процесс, Решение, Готовый кейс — и экраны на планшете"></div>
+        </div>
+        <h3 class="case-card__title t-card-title">Project → Case</h3>
+        <p class="case-card__body t-card-body">От идеи и UX-сценария до работающего MVP, который помогает студентам собирать проекты в портфолио-кейсы.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- 03b — gallery -->
+  <section class="gallery section" aria-label="Галерея работ">
+    <div class="gallery__filter t-h1 wave-title" role="group" aria-label="Категория" id="gallery-filter">
+      <button type="button" data-cat="social" aria-pressed="true">Соцсети (10),</button>
+      <button type="button" data-cat="ads" aria-pressed="false">Реклама</button>
+    </div>
+    <div class="gallery__body">
+      <div class="gallery__grids" id="gallery-grids"></div>
+      <button class="gallery__more pill t-label" type="button" id="gallery-more">Показать ещё</button>
+    </div>
+  </section>
+
+  <!-- 04 — about -->
+  <section class="about section" id="about" aria-labelledby="about-title">
+    <div class="about__card">
+      <div class="about__copy">
+        <h2 class="t-h2 wave-title" id="about-title"><span class="desk">Соединяю <span class="hl">бренд, продукт и процессы</span> в одну работающую систему.</span><span class="mob">Соединяю <span class="hl">бренд, продукт и процессы</span></span></h2>
+        <p class="t-about-body desk">Работаю на стыке брендинга, продуктового дизайна и арт-дирекшна. Проектирую структуру и пользовательские сценарии, определяю визуальное направление, создаю правила и довожу решения от прототипа до рабочего продукта. Руковожу командой из 3 дизайнеров, распределяю задачи, провожу ревью и слежу за целостностью дизайна во всех форматах.</p>
+        <p class="t-card-body mobile-only">Брендинг, продуктовый дизайн и арт-дирекшн — от структуры и сценариев до визуальной системы и запуска. Веду команду из 3 дизайнеров.</p>
+      </div>
+      <div class="about__actions">
+        <a class="pill pill--primary t-label" href="mailto:sburuntarova@gmail.com"><span class="pill__dot" aria-hidden="true"></span>Contact me</a>
+        <a class="pill t-label" href="#about">About</a>
+      </div>
+    </div>
+    <div class="about__photo">
+      <img src="assets/img/about-photo-1252.webp" srcset="assets/img/about-photo-626.webp 626w, assets/img/about-photo-1252.webp 1252w" sizes="(max-width: 899px) 100vw, 33vw" width="1252" height="1560" alt="Саша Бурунтарова" loading="lazy" decoding="async">
+      <div class="intro__scrim"></div>
+      <div class="about__photo-text">
+        <p class="about__photo-name t-label">Саша Бурунтарова</p>
+        <p class="about__photo-sub t-small">Старший дизайнер, тимлид</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — experience -->
+  <section class="exp section" aria-labelledby="exp-title">
+    <h2 class="exp__title t-h1 wave-title" id="exp-title">Опыт — от фриланса до <span class="hl">лида дизайн-команды.</span></h2>
+    <div class="exp__cards">
+      <article class="job">
+        <div class="job__content">
+          <div class="job__head">
+            <h3 class="t-job-title">Ведущий дизайнер</h3>
+            <p class="job__meta t-small">Art Glück · 2022 — настоящее время</p>
+          </div>
+          <p class="t-body">Построила систему бренда с нуля и руковожу дизайн-командой из 3 человек</p>
+        </div>
+        <div class="tags">
+          <span class="tag t-tag">Система бренда Art Glück</span>
+          <span class="tag t-tag">Процессы и команда</span>
+          <a class="tag t-tag" href="https://artgluck.ru" target="_blank" rel="noopener">artgluck.ru<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.75 1.75h3.5v3.5M5.83 8.17l6.42-6.42M10.5 7.58v3.5a1.17 1.17 0 0 1-1.17 1.17H2.92a1.17 1.17 0 0 1-1.17-1.17V4.67A1.17 1.17 0 0 1 2.92 3.5h3.5" stroke="#121212" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+      <article class="job">
+        <div class="job__content">
+          <div class="job__head">
+            <h3 class="t-job-title">Продуктовый дизайнер</h3>
+            <p class="job__meta t-small">General Marketing · 2021 — 2022</p>
+          </div>
+          <p class="t-body">Создавала сайты в маркетинговом агентстве — от лендингов до крупных интернет-магазинов</p>
+        </div>
+        <div class="tags">
+          <span class="tag t-tag">Лендинги</span>
+          <span class="tag t-tag">Интернет-магазины</span>
+        </div>
+      </article>
+      <article class="job">
+        <div class="job__content">
+          <div class="job__head">
+            <h3 class="t-job-title">Фриланс</h3>
+            <p class="job__meta t-small">2020 — 2021</p>
+          </div>
+          <p class="t-body">Работала над разными проектами — от продуктового дизайна до брендинга</p>
+        </div>
+        <div class="tags">
+          <span class="tag t-tag">Брендинг</span>
+          <a class="tag t-tag" href="#" target="_blank" rel="noopener">Behance<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.75 1.75h3.5v3.5M5.83 8.17l6.42-6.42M10.5 7.58v3.5a1.17 1.17 0 0 1-1.17 1.17H2.92a1.17 1.17 0 0 1-1.17-1.17V4.67A1.17 1.17 0 0 1 2.92 3.5h3.5" stroke="#121212" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+    </div>
+      <!-- mobile: each job in its own card, years in a left column (Figma «Home — Mobile 390», 05 / Experience) -->
+    <div class="exp__m">
+      <article class="jobm">
+        <p class="jobm__years t-body">2022 —<br>сейчас</p>
+        <div class="jobm__main">
+          <h3 class="t-job-title">Ведущий дизайнер</h3>
+          <p class="jobm__co"><a class="jobm__link t-body" href="https://artgluck.ru" target="_blank" rel="noopener">Art Glück<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.75 1.75h3.5v3.5M5.83 8.17l6.42-6.42M10.5 7.58v3.5a1.17 1.17 0 0 1-1.17 1.17H2.92a1.17 1.17 0 0 1-1.17-1.17V4.67A1.17 1.17 0 0 1 2.92 3.5h3.5" stroke="#121212" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+          <p class="jobm__desc t-body">Построила систему бренда с нуля и руковожу дизайн-командой из 3 человек</p>
+        </div>
+      </article>
+      <article class="jobm">
+        <p class="jobm__years t-body">2021 —<br>2022</p>
+        <div class="jobm__main">
+          <h3 class="t-job-title">Продуктовый дизайнер</h3>
+          <p class="jobm__co"><span class="jobm__org t-body">General Marketing</span></p>
+          <p class="jobm__desc t-body">Создавала сайты в маркетинговом агентстве — от лендингов до крупных интернет-магазинов</p>
+        </div>
+      </article>
+      <article class="jobm">
+        <p class="jobm__years t-body">2020 —<br>2021</p>
+        <div class="jobm__main">
+          <h3 class="t-job-title">Фриланс</h3>
+          <p class="jobm__co"><a class="jobm__link t-body" href="#" target="_blank" rel="noopener">Behance<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.75 1.75h3.5v3.5M5.83 8.17l6.42-6.42M10.5 7.58v3.5a1.17 1.17 0 0 1-1.17 1.17H2.92a1.17 1.17 0 0 1-1.17-1.17V4.67A1.17 1.17 0 0 1 2.92 3.5h3.5" stroke="#121212" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+          <p class="jobm__desc t-body">Работала над разными проектами — от продуктового дизайна до брендинга</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 06 — contact -->
+  <section class="contact section" aria-labelledby="contact-title">
+    <h2 class="contact__title t-hero wave-title" id="contact-title">Открыта к <span class="seek hl" data-words="новой роли|команде|проекту">новой роли</span><br> Делаю дизайн, который помогает бизнесу расти</h2>
+    <div class="pill-row clist">
+      <button class="pill t-label clist__copy pill--primary" type="button" data-copy="sburuntarova@gmail.com" aria-label="Скопировать: sburuntarova@gmail.com"><span class="pill__dot" aria-hidden="true"></span><span class="cpop__txt"><span class="cpop__addr">Почта</span><span class="cpop__done" aria-hidden="true">Скопировано</span></span></button>
+      <button class="pill t-label clist__copy" type="button" data-copy="@sashaskool" aria-label="Скопировать: @sashaskool"><span class="cpop__txt"><span class="cpop__addr">Telegram</span><span class="cpop__done" aria-hidden="true">Скопировано</span></span></button>
+      <a class="pill t-label" href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="pill t-label" href="#" target="_blank" rel="noopener">Резюме</a>
+      <span class="cpop__sr" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <!-- 07 — footer -->
+  <footer class="footer">
+    <p class="footer__copy t-card-body">Саша Бурунтарова © 2026</p>
+    <a class="footer__up up-btn" href="#" aria-label="Наверх"><span class="up-btn__track"><svg class="up-btn__i" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 16V4M4.5 9.5 10 4l5.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="up-btn__i" viewBox="0 0 20 20" fill="none" aria-hidden="true"><defs><linearGradient id="up-grad" x1="4" y1="16" x2="16" y2="4" gradientUnits="userSpaceOnUse"><stop stop-color="#F2A58E"/><stop offset=".25" stop-color="#EFA94A"/><stop offset=".5" stop-color="#E79AB4"/><stop offset=".75" stop-color="#7FB8EC"/><stop offset="1" stop-color="#9C97EA"/></linearGradient></defs><path d="M10 16V4M4.5 9.5 10 4l5.5 5.5" stroke="url(#up-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+  </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+<!-- the case page is fetched as soon as the pointer rests on a case card: the transition starts without waiting -->
+<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"cases/*"},"eagerness":"moderate"}]}</script>
+<script src="js/main.js" defer></script>
+<script src="js/contact.js" defer></script>
+<script src="js/up-btn.js" defer></script>
+<script src="js/contact-row.js" defer></script>
+<script src="js/case-cursor.js" defer></script>
+<script src="js/p2c-cover.js" defer></script>
+<script src="js/motion.js" defer></script>
+</body>
+</html>

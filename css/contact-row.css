@@ -1,0 +1,9 @@
+/* Closing block (her choice, 2026-11-06): the channels as plain pills, exactly like the old Contact me / LinkedIn / TG row.
+   Почта and Telegram copy on click: the label rolls to «Скопировано» and the pill widens smoothly to fit it (js/contact-row.js). */
+.clist { flex-wrap: wrap; }
+.clist__copy { border: 0; font-family: inherit; cursor: pointer; transition: scale 160ms ease-out; }
+.clist__copy:active { scale: .97; }
+.clist__copy .cpop__txt { transition: width 260ms cubic-bezier(.23, 1, .32, 1); }
+.clist__copy .cpop__addr, .clist__copy .cpop__done { width: max-content; justify-self: start; }
+.clist__copy.is-done .cpop__addr { transform: translateY(-100%); opacity: 0; }
+.clist__copy.is-done .cpop__done { transform: none; opacity: 1; }

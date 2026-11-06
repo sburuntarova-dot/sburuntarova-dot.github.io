@@ -1,0 +1,35 @@
+/* ── the Project → Case cover, live (was a rendered video; source scene reel/scenes/p2c-cover.html, her Figma 675:2165):
+   a warm beige-grey gradient drifting, the constructor's steps rolling up in white with a dot that drops to the active
+   word, the site's tablet mockup with the step's screen. Drawn on a fixed 1560 × 878 stage that p2c-cover.js scales to
+   cover its box (the home card crops 89 px each side — everything important sits inside). ── */
+.p2cc { position: relative; aspect-ratio: 1560 / 878; overflow: hidden; background: #DDD7D0; border-radius: inherit; }
+.case-card__media .p2cc { position: absolute; inset: 0; aspect-ratio: auto; }
+.case-hero .p2cc { border-radius: calc(10 * var(--u)); }
+.p2cc__stage { position: absolute; left: 50%; top: 50%; width: 1560px; height: 878px; margin: -439px 0 0 -780px; transform-origin: 50% 50%; }
+/* soft fields: radial gradients instead of blurred shapes — the same look, no filter to repaint every frame */
+.p2cc__blob { position: absolute; border-radius: 50%; will-change: transform; }
+.p2cc__steps { position: absolute; left: 200px; top: 0; margin: 0; padding: 0; list-style: none; will-change: transform;
+  font: 500 72.5px/82px Manrope, system-ui, sans-serif; letter-spacing: -0.045em; color: #fff; }
+.p2cc__steps li { height: 82px; white-space: nowrap; }
+.p2cc__dot, .p2cc__ring { position: absolute; left: 0; top: 0; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; will-change: transform; }
+.p2cc__dot { background: #fff; }
+.p2cc__dot svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.p2cc__dot path { fill: none; stroke: #A3968A; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 12; stroke-dashoffset: 12; }
+.p2cc__ring { box-sizing: border-box; border: 1.5px solid #fff; opacity: 0; }
+/* the site's tablet mockup at her spot (715 × 454 at 660, 212) and her shadow; the screen as on the case page */
+.p2cc__pad { position: absolute; left: 660px; top: 212px; width: 715px; height: 454px; will-change: transform;
+  /* her shadow as box-shadow on the bezel's rounded shape: a drop-shadow filter on a moving layer showed up on iPhone
+     Safari as a pale rectangle under the tablet */
+  border-radius: 24px; box-shadow: 12px 17px 45px rgb(0 0 0 / 0.10), 48px 67px 82px rgb(0 0 0 / 0.09), 108px 150px 111px rgb(0 0 0 / 0.05); }
+.p2cc__pad > img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.p2cc__screen { position: absolute; left: calc(16.35 / 1099 * 100%); top: calc(15.99 / 698.41 * 100%); width: calc(1066.3 / 1099 * 100%);
+  height: calc(666.44 / 698.41 * 100%); border-radius: 11px; overflow: hidden; background: #fff; }
+/* the page's own image rules (case.css fades every .case-media img in over 500 ms) must not touch the cover: the
+   script sets opacity and position itself, frame by frame */
+.case-media .p2cc img, .case-card__media .p2cc img { transition: none; border-radius: 0; }
+/* the home card zooms its picture on hover (motion.css scales every img in the card): here only the bezel would grow —
+   the whole cover zooms instead */
+.case-card:hover .case-card__media .p2cc img { transform: none; }
+.case-card__media .p2cc { transition: transform 300ms ease; }
+@media (hover: hover) and (pointer: fine) { .case-card:hover .case-card__media .p2cc { transform: scale(1.03); } }
+.p2cc__screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; will-change: transform; }
