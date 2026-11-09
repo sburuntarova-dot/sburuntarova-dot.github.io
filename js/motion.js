@@ -140,7 +140,7 @@
         (no wrappers: .hl and the hover wave keep working). ── */
   const words = cs => [...new Set(cs.map(c => c.parentElement))];
   const MASK_FROM = 'inset(-0.25em -0.15em 100% -0.15em)', MASK_TO = 'inset(-0.25em -0.15em -0.3em -0.15em)';   // room for accents and descenders
-  function riseIn(cs, start = 0) {
+  function riseIn(cs, start = 0, dur = 420, gap = 60) {
     const ws = words(cs).filter(w => w.offsetParent);              // skip the hidden (desktop/mobile) wording
     let line = -1, lastTop = -1e9;
     const tops = ws.map(w => w.getBoundingClientRect().top);   // read every position first, then start the animations (no read/write ping-pong)
@@ -148,7 +148,7 @@
       const top = tops[k];
       if (top > lastTop + 4) { line++; lastTop = top; }
       w.animate([{ transform: 'translateY(100%)', clipPath: MASK_FROM }, { transform: 'none', clipPath: MASK_TO }],
-        { duration: 420, delay: start + line * 60, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)', fill: 'backwards' });
+        { duration: dur, delay: start + line * gap, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)', fill: 'backwards' });
     });
     const seed = Math.random() * PALETTE.length;
     cs.filter(c => c._hl && c.offsetParent).forEach((c, i) => c.animate(
@@ -156,6 +156,7 @@
       { duration: 900, delay: Math.max(0, start + 320 + i * 30 + (Math.random() - 0.5) * 80), easing: 'ease-in-out' }));
   }
 
+  window.__rise = el => { const cs = split(el); riseIn(cs, 0, 300, 35); return cs; };   // lang-swap.js: new words rise in, quicker than the page's entrance
   const title = document.querySelector('.hero__title');
   const variant = title && [...title.children].find(el => el.offsetParent);   // desktop or mobile wording
   if (variant && !reduce) {
@@ -286,7 +287,7 @@
       seek = title.querySelector('.seek[data-words]');
       words = seek.dataset.words.split('|'); cur = 0;
       const r = title.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < innerHeight) setTimeout(cycle, 300);
+      if (r.bottom > 0 && r.top < innerHeight) setTimeout(cycle, 900);
     });
     new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) { stop(); return; }

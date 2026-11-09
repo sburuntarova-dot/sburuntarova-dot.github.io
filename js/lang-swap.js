@@ -4,6 +4,7 @@
 // Blocks that build their own text (gallery, contact stack, rotating words) listen for the `langchange` event.
 (() => {
   const H = document.documentElement, cache = {};
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, EASE = 'cubic-bezier(.23, 1, .32, 1)';
   const load = u => cache[u] || (cache[u] = fetch(u).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
     .then(t => new DOMParser().parseFromString(t, 'text/html')).catch(e => { delete cache[u]; throw e; }));
   const kids = el => [...el.children].filter(c => c.tagName !== 'SCRIPT');
@@ -27,7 +28,7 @@
     });
     const ka = kids(a), kb = kids(b);
     if (ka.length !== kb.length || own(a) !== own(b) || ka.some((k, i) => k.tagName !== kb[i].tagName)) {
-      if (a.innerHTML !== b.innerHTML) ops.push(() => swap(live, b));
+      if (a.innerHTML !== b.innerHTML) { const op = () => swap(live, b); op.el = live; ops.push(op); }
       return;
     }
     const lk = kids(live);
@@ -55,7 +56,17 @@
       const [from, into] = await Promise.all([load(current), load(target)]);
       const ops = [];
       diff(from.body, into.body, document.body, ops);
+      // motion (her pick, 2026-11-09): what is on screen leaves upward in 110 ms and the new words rise in — the hero entrance,
+      // quicker. Only the screen is touched; nothing here changes what the page contains. Reduced motion: words just change.
+      const onScreen = reduce ? [] : ops.filter(o => o.el).map(o => [o.el, o.el.getBoundingClientRect()]).filter(([el, r]) => r.bottom > 0 && r.top < innerHeight && r.width).map(([el]) => el);
+      const out = onScreen.map(el => el.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-0.25em)' }], { duration: 110, easing: EASE, fill: 'forwards' }));
+      if (out.length) await Promise.all(out.map(a => a.finished.catch(() => {})));
       ops.forEach(f => f());
+      out.forEach(a => a.cancel());
+      onScreen.forEach(el => {
+        if (window.__rise && el.matches('.wave-title, .hero__title *') && !el.closest('#gallery-filter')) { el._letters = window.__rise(el); return; }   // headings: line by line (they stay split, as after their entrance)
+        el.animate([{ opacity: 0, transform: 'translateY(0.35em)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: EASE });
+      });
       H.lang = lang;
       document.title = into.title;
       const hero = document.querySelector('.hero__title');
@@ -63,6 +74,10 @@
       if (shown) hero.setAttribute('aria-label', shown.textContent.trim());
       document.querySelectorAll('.case-nav a').forEach(a => { delete a._letters; });
       document.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
+      if (!reduce) document.querySelectorAll('.g-item figcaption, #gallery-filter button').forEach(el => {   // rewritten by main.js on the event
+        const r = el.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < innerHeight && r.width) el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: EASE });
+      });
     } catch (e) {
       location.href = to;                                     // no network or an unexpected page: the ordinary way
     }
