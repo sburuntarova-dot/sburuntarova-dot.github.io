@@ -28,11 +28,12 @@
   const slides = [...fig.querySelectorAll('.ag-events__screen > img')];
   const dots = [...fig.querySelectorAll('.ag-events__bar i')];
   const cap = fig.querySelector('.ag-events__cap');
-  const caps = cap.dataset.caps.split('|');
+  let caps = cap.dataset.caps.split('|');
   const SLIDE = 4000;
   fig.style.setProperty('--ag-slide', SLIDE + 'ms');
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   let cur = 0, timer = null;
+  document.addEventListener('langchange', () => { caps = cap.dataset.caps.split('|'); cap.textContent = caps[cur]; });
   const show = i => {
     const old = slides[cur];
     slides.forEach(im => im.classList.remove('is-prev'));

@@ -2,7 +2,7 @@
 // click — the label rolls to «Скопировано» (the roll lives in contact.css) and the pill's text box eases from the label's
 // width to the message's and back, so the pill never sits half-empty.
 (() => {
-  const msg = document.documentElement.lang === 'en' ? 'Copied!' : 'Скопировано';
+  const msg = () => (document.documentElement.lang === 'en' ? 'Copied!' : 'Скопировано');
   const live = document.querySelector('.clist .cpop__sr');
   const copyText = text => {
     if (navigator.clipboard && isSecureContext) return navigator.clipboard.writeText(text);
@@ -15,11 +15,12 @@
     const box = b.querySelector('.cpop__txt'), label = box.firstElementChild, done = box.lastElementChild;
     const fit = el => { box.style.width = el.scrollWidth + 'px'; };
     document.fonts.ready.then(() => fit(label));
+    document.addEventListener('langchange', () => { b.classList.remove('is-done'); fit(label); });
     let t;
     b.addEventListener('click', async () => {
       try { await copyText(b.dataset.copy); } catch { return; }
       if (b.classList.contains('is-done')) { b.classList.remove('is-done'); void b.offsetWidth; }
-      b.classList.add('is-done'); fit(done); if (live) live.textContent = msg;
+      b.classList.add('is-done'); fit(done); if (live) live.textContent = msg();
       clearTimeout(t); t = setTimeout(() => { b.classList.remove('is-done'); fit(label); if (live) live.textContent = ''; }, 1400);
     });
   });

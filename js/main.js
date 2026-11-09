@@ -67,7 +67,7 @@ const CATEGORIES = {
 
 /* ── English pages (<html lang="en">): the gallery's labels and captions ── */
 const EN = document.documentElement.lang === 'en';
-if (EN) {
+const applyGalleryLang = (() => {
   const T = {
     social: 'Social', ads: 'Ads',
     may: ['May sale −50%', 'Post'], corona: ['Corona course launch', 'Post'], cartelle: ['Interview with Cartelle Design', 'Cover'],
@@ -79,11 +79,13 @@ if (EN) {
     telegram: ['Telegram promo', 'Creative'], sale40: ['40% off courses', 'Creative'], newyear: ['New Year offer', 'Motion'],
     marathon: ['Marathon promo', 'Creative'],
   };
-  Object.entries(CATEGORIES).forEach(([k, c]) => {
-    c.label = T[k] || c.label;
-    Object.entries(c.works).forEach(([id, w]) => { if (T[id]) [w.title, w.type] = T[id]; });
+  Object.values(CATEGORIES).forEach(c => { c.labelRu = c.label; Object.values(c.works).forEach(w => { w.ru = [w.title, w.type]; }); });
+  return en => Object.entries(CATEGORIES).forEach(([k, c]) => {
+    c.label = en && T[k] || c.labelRu;
+    Object.entries(c.works).forEach(([id, w]) => { [w.title, w.type] = en && T[id] || w.ru; });
   });
-}
+})();
+applyGalleryLang(EN);
 
 /* ── RU / EN switch: each button with data-href leads to the same page in the other language ── */
 document.querySelectorAll('.lang__opt[data-href]').forEach(b => b.addEventListener('click', () => { location.href = b.dataset.href; }));
@@ -92,6 +94,7 @@ function item(w, ar, mobile, extra) {
   const name = (mobile && w.mImg) || w.img;
   const fig = document.createElement('figure');
   fig.className = 'g-item';
+  fig._w = w;
   fig.style.setProperty('--ar', ar);
   if (extra) fig.dataset.extra = '';
   fig.innerHTML =
@@ -186,6 +189,15 @@ if (grids && filter) {
   more?.addEventListener('click', () => {
     grids.querySelectorAll('.gallery__grid:not([hidden]) [data-extra]').forEach(el => el.classList.add('is-shown'));
     more.hidden = true;
+  });
+  document.addEventListener('langchange', e => {
+    applyGalleryLang(e.detail.lang === 'en');
+    grids.querySelectorAll('.g-item').forEach(f => {
+      const w = f._w;
+      f.querySelector('img').alt = w.title;
+      f.querySelector('figcaption').innerHTML = `${w.title} <span class="g-item__type">/ ${w.type}</span>`;
+    });
+    show(active);
   });
 }
 

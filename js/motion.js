@@ -252,9 +252,9 @@
         end, the new one typed, each new letter lights up in our palette and settles to ink. The word is plain inline
         text, so the full stop always follows it: no gaps, nothing clipped. Only while the line is on screen;
         reduced motion: «новой роли» stays. ── */
-  const seek = document.querySelector('.seek[data-words]');
+  let seek = document.querySelector('.seek[data-words]');
   if (seek && !reduce) {
-    const words = seek.dataset.words.split('|');
+    let words = seek.dataset.words.split('|');
     let cur = 0, timer = null, running = false;
     const wait = ms => new Promise(r => { timer = setTimeout(r, ms); });
     const letter = ch => { const c = document.createElement('span'); c.className = 'ch'; c.textContent = ch; return c; };
@@ -281,6 +281,13 @@
     }
     const stop = () => { running = false; clearTimeout(timer); seek.classList.remove('is-typing'); seek.textContent = words[cur]; };
     const title = seek.closest('h2');
+    document.addEventListener('langchange', () => {   // the heading's text was replaced: take the new word list and go on
+      running = false; clearTimeout(timer);            // the old loop stays parked on its cleared timer and never resumes
+      seek = title.querySelector('.seek[data-words]');
+      words = seek.dataset.words.split('|'); cur = 0;
+      const r = title.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < innerHeight) setTimeout(cycle, 300);
+    });
     new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) { stop(); return; }
       // wait until the heading has had its own entrance (wave-title), then start
@@ -291,7 +298,7 @@
   /* ── rolling button labels (styles in motion.css §6) ── */
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
   if (!reduce) {
-    document.querySelectorAll('.pill, .lang__opt, a.tag, .case-nav__link').forEach(btn => {
+    const addRoll = btn => {
       const node = [...btn.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
       if (!node) return;
       const label = node.textContent.trim();
@@ -302,7 +309,9 @@
       roll.querySelectorAll('.roll__hover > span').forEach(s => s.textContent = label);
       node.replaceWith(roll);
       btn.classList.add('has-roll');
-    });
+    };
+    document.querySelectorAll('.pill, .lang__opt, a.tag, .case-nav__link').forEach(addRoll);
+    window.__addRoll = addRoll;                   // lang-swap.js: a label whose text was replaced rolls again
   }
 
   /* ── touch screens (no hover): 1) the same roll plays on tap; 2) the main buttons (contact row) roll once,

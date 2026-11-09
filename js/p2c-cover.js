@@ -39,6 +39,10 @@
     const blobs = BLOBS.map(b => { const d = field(bg, b); paint(d, b.c, b.o); return d; });
     const tint = field(bg, { x: 1250, y: 630, w: 1100, h: 900 });
     const steps = el('ol', 'p2cc__steps', stage);
+    document.addEventListener('langchange', () => {
+      const w = root.dataset.words ? root.dataset.words.split('|') : WORDS;
+      [...steps.children].forEach((li, i) => { li.textContent = w[i % w.length]; });
+    });
     steps.innerHTML = words.map(w => `<li>${w}</li>`).join('').repeat(3);   // three copies, so the loop has words above and below
     const lis = [...steps.children];
     const ring = el('span', 'p2cc__ring', stage), ring2 = el('span', 'p2cc__ring', stage);

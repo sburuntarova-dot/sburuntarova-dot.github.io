@@ -7,10 +7,12 @@
     linkedin: '#',   // TODO: her LinkedIn URL
     cv: '#'          // TODO: her CV (PDF)
   };
+  const TEXT = {
+    en: { name: 'Sasha Buruntarova', status: 'Open to a new role', copy: 'Copy', done: 'Copied!', cv: 'CV', dialog: 'Contacts' },
+    ru: { name: 'Саша Бурунтарова', status: 'Открыта к новой роли', copy: 'Скопировать', done: 'Copied!', cv: 'Резюме', dialog: 'Контакты' }
+  };
   const en = document.documentElement.lang === 'en';
-  const T = en
-    ? { name: 'Sasha Buruntarova', status: 'Open to a new role', copy: 'Copy', done: 'Copied!', cv: 'CV' }
-    : { name: 'Саша Бурунтарова', status: 'Открыта к новой роли', copy: 'Скопировать', done: 'Copied!', cv: 'Резюме' };
+  const T = en ? TEXT.en : TEXT.ru;
   const base = new URL('..', document.currentScript.src).href;
   const ARROW = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   // service icons, 20 × 20, stroke 1.5 (as the header's mail icon)
@@ -46,6 +48,14 @@
     </div>`;
   const veil = document.createElement('div'); veil.className = 'cpop-veil';
   document.body.append(pop, veil);
+  document.addEventListener('langchange', e => {
+    const t = TEXT[e.detail.lang];
+    pop.setAttribute('aria-label', t.dialog);
+    pop.querySelector('.cpop__name').textContent = t.name;
+    pop.querySelector('.cpop__status').lastChild.textContent = t.status;
+    pop.querySelectorAll('.cpop__row').forEach(b => b.setAttribute('aria-label', `${t.copy}: ${b.dataset.copy}`));
+    pop.querySelector('.cpop__links .cpop__link:last-child .cpop__lbl').lastChild.textContent = t.cv;
+  });
 
   // the Telegram pills on the page get the real link too
   document.querySelectorAll('a.pill').forEach(a => { if (a.textContent.trim() === 'TG') a.href = LINKS.tg; });

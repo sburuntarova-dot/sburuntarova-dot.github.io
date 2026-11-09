@@ -145,6 +145,7 @@ document.querySelectorAll('.p2c-stage--scroll').forEach(stage => {
   prog.innerHTML = opts.map(o => `<button type="button" aria-label="${o.childNodes[0].textContent.trim()}"><i></i></button>`).join('');
   stage.appendChild(prog);
   const segs = [...prog.children];
+  document.addEventListener('langchange', () => segs.forEach((b, i) => b.setAttribute('aria-label', opts[i].childNodes[0].textContent.trim())));
   const cur = () => Math.max(0, opts.findIndex(o => o.getAttribute('aria-pressed') === 'true'));
   const sync = () => {
     const i = cur();

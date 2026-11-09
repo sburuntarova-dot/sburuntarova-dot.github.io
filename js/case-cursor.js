@@ -4,6 +4,7 @@
   if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const text = document.documentElement.lang === 'en' ? 'Open case' : 'Открыть кейс';
+  document.addEventListener('langchange', e => document.querySelectorAll('.ccur').forEach(t => { t.textContent = e.detail.lang === 'en' ? 'Open case' : 'Открыть кейс'; }));
   document.querySelectorAll('.case-card').forEach(card => {
     const media = card.querySelector('.case-card__media'); if (!media) return;
     const tag = Object.assign(document.createElement('span'), { className: 'ccur t-label', textContent: text });
