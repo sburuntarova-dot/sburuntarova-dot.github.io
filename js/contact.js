@@ -1,11 +1,11 @@
 // Contact card stack — opens from the header Contact pill, the phone mail icon and Contact me (her ref: oimachi.co).
-// 1 photo + name + status (no link — her note); 2 copy mail / Telegram; 3 LinkedIn, CV. Links live here in one place.
+// 1 photo + name + status (no link — her note); 2 copy mail / Telegram; 3 CV. Links live here in one place.
 (() => {
   const LINKS = {
     mail: 'sburuntarova@gmail.com',
     tg: 'https://t.me/sashaskool', tgName: '@sashaskool',
-    linkedin: '#',   // TODO: her LinkedIn URL
-    cv: '#'          // TODO: her CV (PDF)
+    // LinkedIn removed 2026-11-10 until she has a profile (she searches the Russian market for now)
+    cv: { ru: 'assets/cv/Buruntarova-CV-RU.pdf', en: 'assets/cv/Buruntarova-CV-EN.pdf' }  // her CV per site language (plain PDF link, as on her refs)
   };
   const TEXT = {
     en: { name: 'Sasha Buruntarova', status: 'Open to a new role', copy: 'Copy', done: 'Copied!', cv: 'CV', dialog: 'Contacts' },
@@ -43,8 +43,7 @@
       ${row(LINKS.tgName, LINKS.tgName, I.tg)}
     </div>
     <div class="cpop__card cpop__links" style="--i:2">
-      <a class="cpop__link t-label" href="${LINKS.linkedin}" ${ext}><span class="cpop__lbl">${I.in}LinkedIn</span><span class="cpop__arrow">${ARROW}</span></a>
-      <a class="cpop__link t-label" href="${LINKS.cv}" ${ext}><span class="cpop__lbl">${I.cv}${T.cv}</span><span class="cpop__arrow">${ARROW}</span></a>
+      <a class="cpop__link t-label" href="${base}${LINKS.cv[en ? 'en' : 'ru']}" ${ext}><span class="cpop__lbl">${I.cv}${T.cv}</span><span class="cpop__arrow">${ARROW}</span></a>
     </div>`;
   const veil = document.createElement('div'); veil.className = 'cpop-veil';
   document.body.append(pop, veil);
@@ -54,7 +53,9 @@
     pop.querySelector('.cpop__name').textContent = t.name;
     pop.querySelector('.cpop__status').lastChild.textContent = t.status;
     pop.querySelectorAll('.cpop__row').forEach(b => b.setAttribute('aria-label', `${t.copy}: ${b.dataset.copy}`));
-    pop.querySelector('.cpop__links .cpop__link:last-child .cpop__lbl').lastChild.textContent = t.cv;
+    const cv = pop.querySelector('.cpop__links .cpop__link:last-child');
+    cv.querySelector('.cpop__lbl').lastChild.textContent = t.cv;
+    cv.href = base + LINKS.cv[e.detail.lang];
   });
 
   // the Telegram pills on the page get the real link too
