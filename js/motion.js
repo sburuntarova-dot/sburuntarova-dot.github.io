@@ -47,7 +47,10 @@
         every card flies from its old place and size to the new one (slot n → slot n), 1s expo.inOut,
         random stagger 0.3s; the grid blurs and brightens mid-way, which hides the picture swap.
         Cards without a pair (12 vs 10) scale in / out. Images are preloaded, so nothing pops in. ── */
-  if (window.gsap && window.Flip && !reduce) {
+  // GSAP is only needed for the switch, so it loads after the page is shown (2026-11-17: its two downloads delayed the hero text);
+  // until it arrives, main.js switches the categories without the Flip
+  const initFlip = () => {
+    if (!(window.gsap && window.Flip) || reduce) return;
     gsap.registerPlugin(Flip);
     let busy = false;
     const visibleItems = grid => [...grid.querySelectorAll('.gallery__col')]
@@ -97,6 +100,13 @@
         clearProps: 'filter,willChange,position',
       }, 0);
     };
+  };
+  if (window.gsap) initFlip();
+  else if (!reduce && document.getElementById('gallery-grids')) {
+    const add = src => new Promise((ok, bad) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = bad; document.head.append(s); });
+    const CDN = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/';
+    const go = () => add(CDN + 'gsap.min.js').then(() => add(CDN + 'Flip.min.js')).then(initFlip).catch(() => {});
+    setTimeout(() => (window.requestIdleCallback || setTimeout)(go, { timeout: 1500 }), 300);
   }
 
   /* «Показать ещё»: the newly shown works come in the same way */
@@ -140,8 +150,8 @@
         (no wrappers: .hl and the hover wave keep working). ── */
   const words = cs => [...new Set(cs.map(c => c.parentElement))];
   const MASK_FROM = 'inset(-0.25em -0.15em 100% -0.15em)', MASK_TO = 'inset(-0.25em -0.15em -0.3em -0.15em)';   // room for accents and descenders
-  function riseIn(cs, start = 0, dur = 420, gap = 60) {
-    const ws = words(cs).filter(w => w.offsetParent);              // skip the hidden (desktop/mobile) wording
+  function riseIn(cs, start = 0, dur = 420, gap = 60, rise = true) {
+    const ws = rise ? words(cs).filter(w => w.offsetParent) : [];   // skip the hidden (desktop/mobile) wording; hero: CSS already rises the lines
     let line = -1, lastTop = -1e9;
     const tops = ws.map(w => w.getBoundingClientRect().top);   // read every position first, then start the animations (no read/write ping-pong)
     ws.forEach((w, k) => {
@@ -163,7 +173,7 @@
     title.setAttribute('aria-label', variant.textContent.trim());
     const chars = [...variant.querySelectorAll('.line > span')].flatMap(line => split(line));
     document.documentElement.classList.remove('wave-pending');
-    riseIn(chars, 150);
+    riseIn(chars, 0, 420, 60, false);   // only the colour wave (+320 ms); the lines have already risen in CSS
 
     // mouse hover over the important words: the colour wave runs again (letters stay visible)
     const hl = variant.querySelector('.hl');

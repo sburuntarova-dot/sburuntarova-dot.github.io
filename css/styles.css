@@ -329,3 +329,18 @@ button { font: inherit; letter-spacing: inherit; line-height: inherit; color: in
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
 }
+
+/* phone, home: smart header (main.js, 2026-11-17, her «да»; same behaviour as the case pages). Once the header has
+   scrolled off, it comes back fixed on any scroll up and slides away on scroll down, over a strip of the page colour
+   whose lower edge fades out. The first screen keeps its space (padding) so nothing jumps. Desktop is unchanged. */
+@media (max-width: 899px) {
+  .hdr-float .first { padding-top: calc(var(--g) + var(--hdr-h, 0px)); }
+  .hdr-float .first > .header { position: fixed; top: var(--g); left: var(--g); right: var(--g); z-index: 30;
+    transform: translateY(calc(-100% - 2 * var(--g) - 2px)); }
+  .hdr-float .first > .header.is-anim { transition: transform 380ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .hdr-float .first > .header.is-shown { transform: none; }
+  .hdr-float .first > .header::before { content: ""; position: absolute; z-index: -1; pointer-events: none;
+    inset: calc(-1 * var(--g)) calc(-1 * var(--g)) calc(-2 * var(--g));
+    background: linear-gradient(var(--bg-page) calc(100% - var(--g)), rgb(240 240 240 / 0)); }
+}
+@media (prefers-reduced-motion: reduce) { .hdr-float .first > .header.is-anim { transition: none; } }

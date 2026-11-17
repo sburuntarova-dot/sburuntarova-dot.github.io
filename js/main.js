@@ -169,7 +169,21 @@ function preloadGallery() {
     if (quiet < 700) { setTimeout(later, 700 - quiet + 50); return; }
     window.requestIdleCallback ? requestIdleCallback(go, { timeout: 1500 }) : setTimeout(go, 200);
   };
-  document.readyState === 'complete' ? later() : addEventListener('load', later, { once: true });
+  // 2026-11-17 (her «с телефона плохо грузит»): the ≈2 MB of pictures went at the same time as the showreel and slowed it down.
+  // Now they wait until the showreel can play through (or 5 s); on the phone, until the gallery is about two screens away.
+  const reel = document.querySelector('.hero video, .reel video');
+  const afterReel = fn => {
+    if (!reel || reel.readyState >= 4) return fn();
+    let done = false; const once = () => { if (!done) { done = true; fn(); } };
+    reel.addEventListener('canplaythrough', once, { once: true }); setTimeout(once, 5000);
+  };
+  const nearGallery = fn => {
+    if (!mqMobile.matches || !window.IntersectionObserver) return fn();
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); fn(); } }, { rootMargin: '200% 0px' });
+    io.observe(grids);
+  };
+  const start = () => afterReel(() => nearGallery(later));
+  document.readyState === 'complete' ? start() : addEventListener('load', start, { once: true });
 }
 let active = 'social';
 
@@ -233,3 +247,35 @@ document.querySelectorAll('.footer__up').forEach(a => a.addEventListener('click'
   const box = panel && panel.scrollHeight > panel.clientHeight ? panel : window;
   box.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
 }));
+
+/* ── phone, home: smart header (css: .hdr-float in styles.css). Hidden while scrolling down, back on any scroll up;
+      at the very top it returns to its normal place (same spot, so the swap is invisible). Desktop: untouched. ── */
+(() => {
+  const hdr = document.querySelector('.first > .header');
+  if (!hdr) return;
+  const mq = matchMedia('(max-width: 899px)'), root = document.documentElement;
+  let lastY = scrollY, ticking = false, float = false;
+  const setFloat = on => {
+    if (on === float) return;
+    float = on;
+    if (on) { root.style.setProperty('--hdr-h', hdr.offsetHeight + 'px'); hdr.classList.remove('is-anim', 'is-shown'); }
+    root.classList.toggle('hdr-float', on);
+    if (!on) hdr.classList.remove('is-anim', 'is-shown');
+  };
+  const update = () => {
+    ticking = false;
+    if (!mq.matches) { setFloat(false); return; }
+    const y = Math.max(0, scrollY), dy = y - lastY;
+    if (!float) {
+      if (y > hdr.offsetTop + hdr.offsetHeight + 40) setFloat(true);            // the header has scrolled off: float, hidden
+    } else if (y <= 0) setFloat(false);                                          // back at the top: its own place again
+    else if (y < 160 && !hdr.classList.contains('is-shown')) { /* near the top while hidden: the real one is about to show */
+      if (dy < -6) setFloat(false);
+    } else if (dy > 6) hdr.classList.remove('is-shown');                         // scrolling down
+    else if (dy < -6) { hdr.classList.add('is-anim', 'is-shown'); }              // any scroll up
+    if (Math.abs(dy) > 6 || y <= 0) lastY = y;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  mq.addEventListener('change', update);
+  hdr.addEventListener('focusin', () => { if (float) hdr.classList.add('is-anim', 'is-shown'); });
+})();

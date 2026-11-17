@@ -21,9 +21,9 @@
 <meta name="twitter:title" content="Sasha Buruntarova — Portfolio">
 <meta name="twitter:description" content="Senior designer with 5+ years in branding, digital and advertising. Led the Art Glück rebrand and head its design team.">
 <meta name="twitter:image" content="https://buruntarova.com/assets/og/og-sasha.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="preload" as="image" href="assets/video/showreel.jpg" media="(min-width: 900px)">
 <link rel="preload" as="image" href="assets/video/showreel-sq.jpg" media="(max-width: 899px)">
 <link rel="stylesheet" href="css/styles.css">
@@ -71,9 +71,9 @@
       </h1>
       <div class="hero__media">
         <div class="reel">
-          <video data-autoplay muted loop playsinline preload="metadata" poster="assets/video/showreel.jpg"
+          <video data-autoplay muted loop playsinline preload="metadata" data-poster-desktop="assets/video/showreel.jpg"
                  data-src-desktop="assets/video/showreel" data-src-mobile="assets/video/showreel-sq"
-                 data-poster-mobile="assets/video/showreel-sq.jpg" aria-label="Шоурил работ"></video><script>/* the showreel starts loading while the page is still being parsed, not after all the scripts */(function(v){var m=matchMedia("(max-width: 899px)").matches,b=m?v.dataset.srcMobile:v.dataset.srcDesktop;if(m)v.poster=v.dataset.posterMobile;v.innerHTML='<source src="'+b+'.mp4" type="video/mp4"><source src="'+b+'.webm" type="video/webm">';v.dataset.ready="1";v.preload="auto";v.muted=true;if(!matchMedia("(prefers-reduced-motion: reduce)").matches)v.play().catch(function(){})})(document.currentScript.previousElementSibling)</script>
+                 data-poster-mobile="assets/video/showreel-sq.jpg" aria-label="Шоурил работ"></video><script>/* the showreel starts loading while the page is still being parsed, not after all the scripts */(function(v){var m=matchMedia("(max-width: 899px)").matches,b=m?v.dataset.srcMobile:v.dataset.srcDesktop;v.poster=m?v.dataset.posterMobile:v.dataset.posterDesktop;v.innerHTML='<source src="'+b+'.mp4" type="video/mp4"><source src="'+b+'.webm" type="video/webm">';v.dataset.ready="1";v.preload="auto";v.muted=true;if(!matchMedia("(prefers-reduced-motion: reduce)").matches)v.play().catch(function(){})})(document.currentScript.previousElementSibling)</script>
         </div>
         <div class="intro">
           <img src="assets/img/hero-portrait-960.webp" srcset="assets/img/hero-portrait-480.webp 480w, assets/img/hero-portrait-960.webp 960w" sizes="25vw" alt="Саша Бурунтарова" fetchpriority="high">
@@ -235,8 +235,6 @@
     <a class="footer__up up-btn" href="#" aria-label="Наверх"><span class="up-btn__track"><svg class="up-btn__i" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 16V4M4.5 9.5 10 4l5.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="up-btn__i" viewBox="0 0 20 20" fill="none" aria-hidden="true"><defs><linearGradient id="up-grad" x1="4" y1="16" x2="16" y2="4" gradientUnits="userSpaceOnUse"><stop stop-color="#F2A58E"/><stop offset=".25" stop-color="#EFA94A"/><stop offset=".5" stop-color="#E79AB4"/><stop offset=".75" stop-color="#7FB8EC"/><stop offset="1" stop-color="#9C97EA"/></linearGradient></defs><path d="M10 16V4M4.5 9.5 10 4l5.5 5.5" stroke="url(#up-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
   </footer>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
 <!-- the case page is fetched as soon as the pointer rests on a case card: the transition starts without waiting -->
 <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"cases/*"},"eagerness":"moderate"}]}</script>
 <script src="js/main.js" defer></script>
