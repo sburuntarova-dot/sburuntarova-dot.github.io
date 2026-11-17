@@ -16,13 +16,19 @@
   .intro { animation: m-settle 600ms var(--ease-out) 200ms both; }
   /* hero lines rise out of their mask in pure CSS from the first frame (2026-11-17: waiting for motion.js showed the pictures
      ~0.4 s before the text); motion.js only adds the colour wave */
-  .hero__title .line > span { animation: m-rise 420ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(120ms + var(--i, 0) * 60ms) both; }
+  .hero__title .line > span { animation: m-rise-mask 420ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(120ms + var(--i, 0) * 60ms) both; }
 }
 @media (prefers-reduced-motion: reduce) {
   .header, .hero__title, .reel, .intro { animation: m-fade 200ms ease both; }
 }
 @keyframes m-fade   { from { opacity: 0; } }
 @keyframes m-rise   { from { transform: translateY(105%); } }
+/* the hero lines: the mask moves with the words, so nothing peeks out of the line below before it rises
+   (2026-11-17: without it the tops of the letters showed for a moment — her «кусочки букв») */
+@keyframes m-rise-mask {
+  from { transform: translateY(100%); clip-path: inset(-0.25em -0.15em 100% -0.15em); }
+  to   { transform: none;             clip-path: inset(-0.25em -0.15em -0.3em -0.15em); }
+}
 @keyframes m-settle { from { opacity: 0; transform: scale(0.97); } }
 
 /* hero title waits invisible until motion.js has split it into letters (class set in <head>, removed by motion.js) */
