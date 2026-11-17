@@ -279,3 +279,19 @@ document.querySelectorAll('.footer__up').forEach(a => a.addEventListener('click'
   mq.addEventListener('change', update);
   hdr.addEventListener('focusin', () => { if (float) hdr.classList.add('is-anim', 'is-shown'); });
 })();
+
+/* ── header logo ball (styles.css .ball-logo): one turn on hover, or on tap on the phone ── */
+(() => {
+  const ball = document.querySelector('.ball-logo');
+  if (!ball || matchMedia('(prefers-reduced-motion: reduce)').matches || !CSS.registerProperty && !('animate' in ball)) return;
+  let busy = false;
+  const spin = () => {
+    if (busy) return;
+    busy = true;
+    ball.animate([{ '--ball-a': '0deg' }, { '--ball-a': '360deg' }], { duration: 900, easing: 'cubic-bezier(0.65, 0, 0.35, 1)' })
+      .finished.finally(() => { busy = false; });
+  };
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) ball.addEventListener('pointerenter', spin);
+  else ball.addEventListener('touchstart', spin, { passive: true });
+  ball.addEventListener('focus', () => { if (ball.matches(':focus-visible')) spin(); });
+})();

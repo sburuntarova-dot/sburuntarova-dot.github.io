@@ -344,3 +344,25 @@ button { font: inherit; letter-spacing: inherit; line-height: inherit; color: in
     background: linear-gradient(var(--bg-page) calc(100% - var(--g)), rgb(240 240 240 / 0)); }
 }
 @media (prefers-reduced-motion: reduce) { .hdr-float .first > .header.is-anim { transition: none; } }
+
+/* ── header logo: a black glass ball with a white S (2026-11-17, her choice; ref: OpenPurpose «Start» sphere).
+      Hover (tap on the phone) turns it once: the S rolls along the diagonal, squeezing as on a real sphere, goes round
+      the back and comes out at the top left. No drop shadow (her note). Same height as the header buttons. ── */
+@property --ball-a { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
+.ball-logo {
+  --size: calc(37 * var(--u));
+  position: relative; display: block; flex: none; width: var(--size); height: var(--size);
+  border-radius: 50%; overflow: hidden; -webkit-tap-highlight-color: transparent;
+  background: radial-gradient(circle at 34% 28%, #3a3a3a 0, #1c1c1c 42%, #0c0c0c 78%, #050505 100%);
+  box-shadow: inset 0 0 calc(var(--size) * 0.07) rgb(255 255 255 / 0.42), inset 0 0 0 1px rgb(255 255 255 / 0.26),
+              inset calc(var(--size) * 0.08) calc(var(--size) * 0.1) calc(var(--size) * 0.2) rgb(255 255 255 / 0.06);
+}
+.ball-logo__s {
+  --phi: 35deg; --tilt: 18deg;
+  position: absolute; left: 50%; top: 50%; width: 54%; height: 54%; margin: -27% 0 0 -27%;
+  transform: rotate(var(--phi)) translateX(calc(sin(var(--ball-a)) * var(--size) * 0.42)) scaleX(max(0.001, cos(var(--ball-a))))
+             rotate(calc(-1 * var(--phi))) rotate(var(--tilt));
+  opacity: clamp(0, calc(cos(var(--ball-a)) * 1.6 + 0.05), 1);
+}
+.ball-logo__s svg { display: block; width: 100%; height: 100%; overflow: visible; }
+@media (max-width: 899px) { .ball-logo { --size: calc(30 * var(--u)); } }
