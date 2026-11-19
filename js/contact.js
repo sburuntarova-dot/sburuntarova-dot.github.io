@@ -26,8 +26,8 @@
   const CHECK = '<svg class="cpop__ok" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const COPY = '<svg class="cpop__cp" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M10.5 3.5v-.5a1 1 0 0 0-1-1H3.5a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
   // the copy row: the address and «Copied!» share one grid cell (the row keeps the address's width); the icon slot holds copy + check
-  const row = (v, label, icon) => `<button class="cpop__row t-label" type="button" data-copy="${v}" aria-label="${T.copy}: ${v}">${icon}` +
-    `<span class="cpop__txt"><span class="cpop__addr">${label}</span><span class="cpop__done" aria-hidden="true">${T.done}</span></span>` +
+  const row = (v, label, icon) => `<button class="cpop__row t-label" type="button" data-copy="${v}" aria-label="${T.copy}: ${v}"><span class="cpop__lbl">${icon}` +
+    `<span class="cpop__txt"><span class="cpop__addr">${label}</span><span class="cpop__done" aria-hidden="true">${T.done}</span></span></span>` +
     `<span class="cpop__ico">${COPY}${CHECK}</span></button>`;
   const ext = 'target="_blank" rel="noopener"';
 
@@ -38,11 +38,9 @@
       <img src="${base}assets/img/hero-portrait-480.webp" alt="" width="80" height="80" loading="lazy">
       <span><span class="cpop__name">${T.name}</span><span class="cpop__status t-label"><span class="pill__dot" aria-hidden="true"></span>${T.status}</span></span>
     </div>
-    <div class="cpop__card cpop__copy" style="--i:1">
+    <div class="cpop__card cpop__links cpop__list" style="--i:1">
       ${row(LINKS.mail, LINKS.mail, I.mail)}
-      ${row(LINKS.tgName, LINKS.tgName, I.tg)}
-    </div>
-    <div class="cpop__card cpop__links" style="--i:2">
+      <a class="cpop__link t-label" href="${LINKS.tg}" ${ext}><span class="cpop__lbl">${I.tg}${LINKS.tgName}</span><span class="cpop__arrow">${ARROW}</span></a>
       <a class="cpop__link t-label" href="${LINKS.linkedin}" ${ext}><span class="cpop__lbl">${I.in}LinkedIn</span><span class="cpop__arrow">${ARROW}</span></a>
       <a class="cpop__link t-label" href="${base}${LINKS.cv[en ? 'en' : 'ru']}" ${ext}><span class="cpop__lbl">${I.cv}${T.cv}</span><span class="cpop__arrow">${ARROW}</span></a>
     </div>`;

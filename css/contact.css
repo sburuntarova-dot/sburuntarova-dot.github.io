@@ -100,3 +100,15 @@
   .cpop { opacity: 0; transition: opacity 150ms ease, visibility 0s 150ms; }
   .cpop.is-open { opacity: 1; transition: opacity 200ms ease, visibility 0s; }
 }
+
+/* 2026-11-19 (her choice, variant А, local trial): one card under the photo card — mail, Telegram, LinkedIn, CV as four
+   equal rows (same size, icon left, action right), no divider lines; the photo card keeps its spacing */
+.cpop__list { display: flex; flex-direction: column; padding: calc(4 * var(--u)) calc(12 * var(--u)); }
+.cpop__list > .cpop__row, .cpop__list > .cpop__link { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: calc(12 * var(--u)) 0;
+  font-size: calc(18 * var(--u)); line-height: calc(24 * var(--u)); letter-spacing: calc(-0.54 * var(--u)); }
+.cpop__list .cpop__link + .cpop__link { border-top: 0; }
+.cpop__list .cpop__lbl { min-width: 0; }
+.cpop__list .cpop__arrow { width: calc(14 * var(--u)); height: calc(14 * var(--u)); background: none; color: var(--text-muted); transition: color 160ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .cpop__list .cpop__link:hover .cpop__arrow { background: none; color: var(--text-primary); }
+}
