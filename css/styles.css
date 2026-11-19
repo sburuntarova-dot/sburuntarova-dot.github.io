@@ -332,8 +332,9 @@ button { font: inherit; letter-spacing: inherit; line-height: inherit; color: in
 
 /* phone, home: smart header (main.js, 2026-11-17, her «да»; same behaviour as the case pages). Once the header has
    scrolled off, it comes back fixed on any scroll up and slides away on scroll down, over a strip of the page colour
-   whose lower edge fades out. The first screen keeps its space (padding) so nothing jumps. Desktop is unchanged. */
-@media (max-width: 899px) {
+   whose lower edge fades out. The first screen keeps its space (padding) so nothing jumps.
+   2026-11-19: on the desktop too (her «на компе поднимаю вверх — ничего нет»). */
+@media all {
   .hdr-float .first { padding-top: calc(var(--g) + var(--hdr-h, 0px)); }
   .hdr-float .first > .header { position: fixed; top: var(--g); left: var(--g); right: var(--g); z-index: 30;
     transform: translateY(calc(-100% - 2 * var(--g) - 2px)); }

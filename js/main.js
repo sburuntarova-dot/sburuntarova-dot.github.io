@@ -253,7 +253,7 @@ document.querySelectorAll('.footer__up').forEach(a => a.addEventListener('click'
 (() => {
   const hdr = document.querySelector('.first > .header');
   if (!hdr) return;
-  const mq = matchMedia('(max-width: 899px)'), root = document.documentElement;
+  const mq = matchMedia('all'), root = document.documentElement;   // phone and desktop (desktop added 2026-11-19)
   let lastY = scrollY, ticking = false, float = false;
   const setFloat = on => {
     if (on === float) return;
