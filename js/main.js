@@ -295,20 +295,3 @@ document.querySelectorAll('.footer__up').forEach(a => a.addEventListener('click'
   else ball.addEventListener('touchstart', spin, { passive: true });
   ball.addEventListener('focus', () => { if (ball.matches(':focus-visible')) spin(); });
 })();
-
-/* ── home: always opens at the top, on reload too (her choice 1, 2026-11-19; same as the case pages, case.js).
-      The phone's browser restored the old position a few dozen px off while the showreel loaded, so the page opened
-      slightly scrolled and the smart header stayed hidden. Back/forward and #links keep their place. ── */
-(() => {
-  if (!document.querySelector('.first > .header')) return;   // home pages only
-  const navEntry = performance.getEntriesByType?.('navigation')[0];
-  if (location.hash || navEntry?.type === 'back_forward') return;
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  let touched = false;
-  ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, () => { touched = true; }, { once: true, passive: true }));
-  const toTop = () => { if (!touched) scrollTo({ top: 0, behavior: 'instant' }); };
-  // 'manual' only while opening: left on, it also stopped «back» from a case returning to the old place
-  const done = () => { toTop(); if ('scrollRestoration' in history) history.scrollRestoration = 'auto'; };
-  toTop();
-  document.readyState === 'complete' ? setTimeout(done, 0) : addEventListener('load', () => setTimeout(done, 0), { once: true });
-})();
