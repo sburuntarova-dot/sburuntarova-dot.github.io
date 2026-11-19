@@ -4,7 +4,7 @@
   const LINKS = {
     mail: 'sburuntarova@gmail.com',
     tg: 'https://t.me/sashaskool', tgName: '@sashaskool',
-    // LinkedIn removed 2026-11-10 until she has a profile (she searches the Russian market for now)
+    linkedin: 'https://www.linkedin.com/in/sasha-buruntarova-3215b7448',   // back 2026-11-19: her profile (from her job applications)
     cv: { ru: 'assets/cv/Buruntarova-CV-RU.pdf', en: 'assets/cv/Buruntarova-CV-EN.pdf' }  // her CV per site language (plain PDF link, as on her refs)
   };
   const TEXT = {
@@ -43,6 +43,7 @@
       ${row(LINKS.tgName, LINKS.tgName, I.tg)}
     </div>
     <div class="cpop__card cpop__links" style="--i:2">
+      <a class="cpop__link t-label" href="${LINKS.linkedin}" ${ext}><span class="cpop__lbl">${I.in}LinkedIn</span><span class="cpop__arrow">${ARROW}</span></a>
       <a class="cpop__link t-label" href="${base}${LINKS.cv[en ? 'en' : 'ru']}" ${ext}><span class="cpop__lbl">${I.cv}${T.cv}</span><span class="cpop__arrow">${ARROW}</span></a>
     </div>`;
   const veil = document.createElement('div'); veil.className = 'cpop-veil';
